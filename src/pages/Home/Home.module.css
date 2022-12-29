@@ -1,0 +1,24 @@
+.home {
+  flex-grow: 1;
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.homeWrapper{
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .homeWrapper {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .home {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}

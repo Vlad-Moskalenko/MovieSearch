@@ -1,0 +1,93 @@
+.movie {
+  width: calc(320px - 2*20px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  font-weight: 500;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  transition: color 250ms ease-in-out;
+  animation: blur 250ms ease-in-out;
+}
+
+.movie:hover {
+  color: #FF001B;
+}
+
+.moviePoster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+
+  transition: transform 250ms ease-in-out,
+}
+
+.moviePoster:hover {
+  transform: scale(1.1);
+}
+
+.movieTitle {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.posterWrapper {
+  width: 100%;
+  height: 402px;
+
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.movieGenre {
+  color: #FF6B08;
+}
+
+.vote {
+  padding: 3px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+
+  vertical-align: middle;
+
+  color: #fff;
+  background: #FF6B01;
+  border-radius: 5px;
+}
+
+@media screen and (min-width: 768px) {
+  .movie {
+    gap: 8px;
+  }
+
+  .movie {
+    width: calc((768px - 3*32px)/2);
+  }
+
+  .posterWrapper {
+    height: 455px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .movie {
+    gap: 12px;
+  }
+
+  .movie {
+    width: calc((1280px - 2*32px - 2*15.5px)/3);
+  }
+
+  .posterWrapper {
+    height: 574px;
+  }
+
+  .movieTitle {
+    font-size: 20px;
+  }
+}
