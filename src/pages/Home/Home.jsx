@@ -7,7 +7,7 @@ import { movieApi } from 'services/api';
 import { MoviesList } from 'components';
 
 export const Home = () => {
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [trendingMovies, setTrendingMovies] = useState([]);
 
   useEffect(() => {
