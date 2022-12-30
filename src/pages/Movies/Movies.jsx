@@ -7,14 +7,17 @@ import { movieApi } from 'services/api';
 
 export const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalResults, setTotalResults] = useState();
+  const [totalResults, setTotalResults] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [queryInput, setQueryInput] = useState();
+
   const query = searchParams.get('query') ?? '';
-  const [queryInput, setQueryInput] = useState(query);
+  const page = Number(searchParams.get('page')) || 1;
 
   useEffect(() => {
-    if (query && page) {
+    setQueryInput(query);
+
+    if (query) {
       movieApi.searchMovie(query, page).then(({ results, total_results }) => {
         setMoviesList(results);
         setTotalResults(total_results);
@@ -22,6 +25,7 @@ export const Movies = () => {
     }
     if (query === '') {
       setMoviesList([]);
+      setTotalResults(0);
     }
   }, [query, page]);
 
@@ -30,8 +34,16 @@ export const Movies = () => {
 
     const { value } = e.target.query;
 
-    const searchParams = value !== '' ? { query: value } : {};
-    setSearchParams(searchParams);
+    if (value === '') {
+      alert('Search field is empty!!!');
+      return;
+    }
+
+    setSearchParams({ query: value, page: 1 });
+  };
+
+  const setQueryString = page => {
+    setSearchParams({ query: query, ...page });
   };
 
   return (
@@ -49,8 +61,8 @@ export const Movies = () => {
       {totalResults > 20 && (
         <PagePagination
           totalResults={totalResults}
-          page={page}
-          setPage={setPage}
+          currentPage={page}
+          setPage={setQueryString}
         />
       )}
     </div>

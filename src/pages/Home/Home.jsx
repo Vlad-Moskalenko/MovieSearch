@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 import css from './Home.module.css';
 
@@ -7,9 +8,10 @@ import { movieApi } from 'services/api';
 import { MoviesList, PagePagination } from 'components';
 
 export const Home = () => {
-  const [page, setPage] = useState(1);
   const [trendingMovies, setTrendingMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const [totalResults, setTotalResults] = useState();
+  const page = Number(searchParams.get('page')) || 1;
 
   useEffect(() => {
     movieApi.getTrendingMovies(page).then(({ results, total_results }) => {
@@ -25,8 +27,8 @@ export const Home = () => {
       </div>
       <PagePagination
         totalResults={totalResults}
-        page={page}
-        setPage={setPage}
+        currentPage={page}
+        setPage={setSearchParams}
       />
     </main>
   );

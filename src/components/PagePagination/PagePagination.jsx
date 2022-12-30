@@ -2,9 +2,9 @@ import 'rc-pagination/assets/index.css';
 
 import Pagination from 'rc-pagination';
 
-export const PagePagination = ({ totalResults, page, setPage }) => {
+export const PagePagination = ({ totalResults, currentPage, setPage }) => {
   const handlePageClick = e => {
-    setPage(e);
+    setPage({ page: e });
 
     window.scrollTo({
       top: 0,
@@ -15,7 +15,7 @@ export const PagePagination = ({ totalResults, page, setPage }) => {
   return (
     <Pagination
       onChange={handlePageClick}
-      current={page}
+      current={currentPage}
       total={totalResults}
       pageSize={20}
       showLessItems
