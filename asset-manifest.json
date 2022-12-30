@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/filmoteka-React/static/css/main.e57129f7.css",
-    "main.js": "/filmoteka-React/static/js/main.bd5258e2.js",
+    "main.css": "/filmoteka-React/static/css/main.64060f2e.css",
+    "main.js": "/filmoteka-React/static/js/main.fdf55259.js",
     "static/media/library-header-bg.jpg": "/filmoteka-React/static/media/library-header-bg.04e70cdc86d2f10c3287.jpg",
     "static/media/header-bg-1280.jpg": "/filmoteka-React/static/media/header-bg-1280.76a8bc51df91c0fd0c7a.jpg",
     "static/media/header-bg-768.jpg": "/filmoteka-React/static/media/header-bg-768.f258fea5dfb2e78baad5.jpg",
     "static/media/header-bg-320.jpg": "/filmoteka-React/static/media/header-bg-320.36e72e0805aeb2072c2c.jpg",
     "index.html": "/filmoteka-React/index.html",
-    "main.e57129f7.css.map": "/filmoteka-React/static/css/main.e57129f7.css.map",
-    "main.bd5258e2.js.map": "/filmoteka-React/static/js/main.bd5258e2.js.map"
+    "main.64060f2e.css.map": "/filmoteka-React/static/css/main.64060f2e.css.map",
+    "main.fdf55259.js.map": "/filmoteka-React/static/js/main.fdf55259.js.map"
   },
   "entrypoints": [
-    "static/css/main.e57129f7.css",
-    "static/js/main.bd5258e2.js"
+    "static/css/main.64060f2e.css",
+    "static/js/main.fdf55259.js"
   ]
 }
