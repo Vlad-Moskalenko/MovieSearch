@@ -1,15 +1,10 @@
-import 'rc-pagination/assets/index.css';
-
 import { useEffect, useState } from 'react';
-import Pagination from 'rc-pagination';
-
-// import ReactPaginate from 'react-paginate';
 
 import css from './Home.module.css';
 
 import { movieApi } from 'services/api';
 
-import { MoviesList } from 'components';
+import { MoviesList, PagePagination } from 'components';
 
 export const Home = () => {
   const [page, setPage] = useState(1);
@@ -23,20 +18,15 @@ export const Home = () => {
     });
   }, [page]);
 
-  const handlePageClick = e => setPage(e);
-
   return (
     <main className={css.home}>
       <div className={`container ${css.homeWrapper}`}>
         <MoviesList movies={trendingMovies} link="movies/" />
       </div>
-      <Pagination
-        onChange={handlePageClick}
-        current={page}
-        total={totalResults}
-        pageSize={20}
-        showLessItems
-        showTitle={false}
+      <PagePagination
+        totalResults={totalResults}
+        page={page}
+        setPage={setPage}
       />
     </main>
   );

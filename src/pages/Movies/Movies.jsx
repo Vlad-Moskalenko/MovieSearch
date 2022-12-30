@@ -1,24 +1,29 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { MoviesList } from 'components';
+import { MoviesList, PagePagination } from 'components';
 
 import { movieApi } from 'services/api';
 
 export const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState();
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
   const [queryInput, setQueryInput] = useState(query);
 
   useEffect(() => {
-    if (query) {
-      movieApi.searchMovie(query).then(({ results }) => setMoviesList(results));
+    if (query && page) {
+      movieApi.searchMovie(query, page).then(({ results, total_results }) => {
+        setMoviesList(results);
+        setTotalResults(total_results);
+      });
     }
     if (query === '') {
       setMoviesList([]);
     }
-  }, [query]);
+  }, [query, page]);
 
   const handleFormSubmit = e => {
     e.preventDefault();
@@ -41,6 +46,13 @@ export const Movies = () => {
         <button type="submit">Search</button>
       </form>
       <MoviesList movies={moviesList} />
+      {totalResults > 20 && (
+        <PagePagination
+          totalResults={totalResults}
+          page={page}
+          setPage={setPage}
+        />
+      )}
     </div>
   );
 };
