@@ -24,12 +24,12 @@ export const Home = () => {
     <main className={css.home}>
       <div className={`container ${css.homeWrapper}`}>
         <MoviesList movies={trendingMovies} link="movies/" />
+        <PagePagination
+          totalResults={totalResults}
+          currentPage={page}
+          setPage={setSearchParams}
+        />
       </div>
-      <PagePagination
-        totalResults={totalResults}
-        currentPage={page}
-        setPage={setSearchParams}
-      />
     </main>
   );
 };

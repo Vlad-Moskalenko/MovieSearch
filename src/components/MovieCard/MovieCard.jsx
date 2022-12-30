@@ -1,4 +1,5 @@
 import css from './MovieCard.module.css';
+import image404 from '../../images/404.jpg';
 
 import { Link, useLocation } from 'react-router-dom';
 
@@ -10,7 +11,7 @@ export const MovieCard = ({ movieData, link = '' }) => {
 
   const imageSrc = poster_path
     ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-    : '../../images/404.jpg';
+    : image404;
 
   return (
     <li className={css.movie} id={id}>
