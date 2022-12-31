@@ -28,12 +28,14 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
           />
           <div className={css.movieMeta}>
             <h2 className={css.movieTitle} title={title}>
-              {title}{' '}
+              {title}
               <span className={css.vote}>{vote_average.toFixed(1)}</span>
             </h2>
             <p className={css.movieGenre}>
-              <span className={css.genres}>{genresString}</span> |{' '}
-              {release_date ? parseInt(release_date) : '-'}
+              <span className={css.genres}>{genresString}</span>
+              <span className={css.releaseDate}>
+                {release_date ? parseInt(release_date) : '-'}
+              </span>
             </p>
           </div>
         </div>

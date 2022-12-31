@@ -1,14 +1,9 @@
 .footer {
   padding: 29px 20px;
 
+  text-align: center;
+
   background-color: #F7F7F7;
-}
-
-.footer p {
-    max-width: 246px;
-    margin: auto;
-
-    text-align: center;
 }
 
 .copyrights {
@@ -18,12 +13,8 @@
   color: #545454;
 }
 @media screen and (min-width: 768px) {
-  .footer p {
-    max-width: 100%;
-  }
-
   .copyrights {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 1.88;
   }
 }

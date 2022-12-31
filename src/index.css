@@ -55,15 +55,39 @@ a.active {
   font-size: 20px;
 }
 
-.rc-pagination-item-active a,
-.rc-pagination-item a:hover,
-.rc-pagination-item a:focus{
-  color:#FF6B01
+.rc-pagination li{
+  font-family: inherit;
 }
-.rc-pagination-item-active,
-.rc-pagination-item:hover,
-.rc-pagination-item:focus{
+
+.rc-pagination-item:hover a,
+.rc-pagination-item:focus a {
+  color:#FF6B01;
+}
+
+.rc-pagination-item:focus,
+.rc-pagination-item:hover {
   border-color: #FF6B01;
+  transition: all 0.3s;
+}
+.rc-pagination-item:focus a,
+.rc-pagination-item:hover a {
+  color: #FF6B01;
+}
+.rc-pagination-item-active {
+  font-weight: 500;
+  background: #fff;
+  border-color: #FF6B01;
+}
+.rc-pagination-item-active a {
+  color: #FF6B01;
+}
+.rc-pagination-item-active:focus,
+.rc-pagination-item-active:hover {
+  border-color: #FF6B01;
+}
+.rc-pagination-item-active:focus a,
+.rc-pagination-item-active:hover a {
+  color: #FF6B01;
 }
 
 
