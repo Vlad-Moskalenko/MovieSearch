@@ -5,7 +5,7 @@ import { MoviesList, PagePagination } from 'components';
 
 import { movieApi } from 'services/api';
 
-export const Movies = () => {
+export const Movies = ({ genres }) => {
   const [moviesList, setMoviesList] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -57,7 +57,9 @@ export const Movies = () => {
         />
         <button type="submit">Search</button>
       </form>
-      <MoviesList movies={moviesList} />
+      {moviesList.length > 0 && (
+        <MoviesList movies={moviesList} genres={genres} />
+      )}
       {totalResults > 20 && (
         <PagePagination
           totalResults={totalResults}

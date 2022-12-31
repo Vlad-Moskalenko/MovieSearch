@@ -59,6 +59,7 @@ class movieDataBaseApi {
       return data
     })
   }
+
   getMovieReviews(movieId) {
     return axios.get(`/movie/${movieId}/reviews?`, {
       params: {
@@ -72,7 +73,18 @@ class movieDataBaseApi {
     })
   }
 
-
+  getGenres(){
+    return axios.get('/genre/movie/list?', {
+      params: {
+        api_key: this.API_KEY
+      }
+    }).then(({data, request}) => {
+      if(request.status !== 200){
+        throw new Error(request.status)
+      }
+      return data
+    })
+  }
 }
 
 export const movieApi = new movieDataBaseApi()

@@ -7,7 +7,7 @@ import { movieApi } from 'services/api';
 
 import { MoviesList, PagePagination } from 'components';
 
-export const Home = () => {
+export const Home = ({ genres }) => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [totalResults, setTotalResults] = useState();
@@ -23,12 +23,16 @@ export const Home = () => {
   return (
     <main className={css.home}>
       <div className={`container ${css.homeWrapper}`}>
-        <MoviesList movies={trendingMovies} link="movies/" />
-        <PagePagination
-          totalResults={totalResults}
-          currentPage={page}
-          setPage={setSearchParams}
-        />
+        {trendingMovies.length > 0 && (
+          <MoviesList genres={genres} movies={trendingMovies} link="movies/" />
+        )}
+        {totalResults > 20 && (
+          <PagePagination
+            totalResults={totalResults}
+            currentPage={page}
+            setPage={setSearchParams}
+          />
+        )}
       </div>
     </main>
   );
