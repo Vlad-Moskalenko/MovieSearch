@@ -21,7 +21,7 @@ export const App = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home genres={genres} />} />
@@ -33,6 +33,6 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </div>
+    </>
   );
 };

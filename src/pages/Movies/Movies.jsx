@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import { MoviesList, PagePagination } from 'components';
+import { MoviesList, PagePagination, SearchField } from 'components';
 
 import { movieApi } from 'services/api';
 
@@ -20,9 +20,10 @@ export const Movies = ({ genres }) => {
     if (query) {
       movieApi.searchMovie(query, page).then(({ results, total_results }) => {
         setMoviesList(results);
-        setTotalResults(total_results);
+        page === 1 && setTotalResults(total_results);
       });
     }
+
     if (query === '') {
       setMoviesList([]);
       setTotalResults(0);
@@ -42,21 +43,15 @@ export const Movies = ({ genres }) => {
     setSearchParams({ query: value, page: 1 });
   };
 
-  const setQueryString = page => {
-    setSearchParams({ query: query, ...page });
-  };
+  const setQueryString = page => setSearchParams({ query: query, ...page });
 
   return (
-    <div>
-      <form onSubmit={handleFormSubmit}>
-        <input
-          onChange={e => setQueryInput(e.target.value)}
-          value={queryInput}
-          name="query"
-          type="text"
-        />
-        <button type="submit">Search</button>
-      </form>
+    <main>
+      <SearchField
+        handleFormSubmit={handleFormSubmit}
+        setQueryInput={setQueryInput}
+        queryInput={queryInput}
+      />
       {moviesList.length > 0 && (
         <MoviesList movies={moviesList} genres={genres} />
       )}
@@ -67,6 +62,6 @@ export const Movies = ({ genres }) => {
           setPage={setQueryString}
         />
       )}
-    </div>
+    </main>
   );
 };
