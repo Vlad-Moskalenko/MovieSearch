@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams, NavLink, Outlet, useLocation } from 'react-router-dom';
+import { useParams, NavLink, useLocation } from 'react-router-dom';
 
-import { MovieDetailsMeta } from 'components';
+import { MovieDetailsMeta, AdditionalInfo } from 'components';
 
 import css from './MovieDetails.module.css';
 
@@ -23,22 +23,7 @@ export const MovieDetails = () => {
     <div className={css.movieDetailsWrapper}>
       <NavLink to={backLinkHref}>Go Back</NavLink>;
       <MovieDetailsMeta movieDetails={movieDetails} />
-      <div>
-        <h3>Additional information</h3>
-        <ul>
-          <li>
-            <NavLink to="cast" state={{ from: backLinkHref }}>
-              Cast
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="reviews" state={{ from: backLinkHref }}>
-              Reviews
-            </NavLink>
-          </li>
-        </ul>
-        <Outlet />
-      </div>
+      <AdditionalInfo location={backLinkHref} />
     </div>
   );
 };

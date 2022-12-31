@@ -1,4 +1,4 @@
-import css from './SearchField.module.css';
+// import css from './SearchField.module.css';
 
 export const SearchField = props => {
   const { handleFormSubmit, setQueryInput, queryInput } = props;
