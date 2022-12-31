@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/filmoteka-React/static/css/main.849fd76e.css",
-    "main.js": "/filmoteka-React/static/js/main.7e870a5d.js",
+    "main.js": "/filmoteka-React/static/js/main.7a0b17a2.js",
     "static/media/404.jpg": "/filmoteka-React/static/media/404.860b94ea26e80d11d2b4.jpg",
     "static/media/library-header-bg.jpg": "/filmoteka-React/static/media/library-header-bg.04e70cdc86d2f10c3287.jpg",
     "static/media/header-bg-1280.jpg": "/filmoteka-React/static/media/header-bg-1280.76a8bc51df91c0fd0c7a.jpg",
@@ -9,10 +9,10 @@
     "static/media/header-bg-320.jpg": "/filmoteka-React/static/media/header-bg-320.36e72e0805aeb2072c2c.jpg",
     "index.html": "/filmoteka-React/index.html",
     "main.849fd76e.css.map": "/filmoteka-React/static/css/main.849fd76e.css.map",
-    "main.7e870a5d.js.map": "/filmoteka-React/static/js/main.7e870a5d.js.map"
+    "main.7a0b17a2.js.map": "/filmoteka-React/static/js/main.7a0b17a2.js.map"
   },
   "entrypoints": [
     "static/css/main.849fd76e.css",
-    "static/js/main.7e870a5d.js"
+    "static/js/main.7a0b17a2.js"
   ]
 }
