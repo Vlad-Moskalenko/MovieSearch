@@ -11,7 +11,7 @@ body {
   flex-direction: column;
 
 	font-family: 'roboto', sans-serif;
-	font-size: 14px;
+	font-size: 20px;
 }
 
 code {
@@ -44,11 +44,24 @@ img {
   height: auto;
 }
 
+#root{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+main{
+  flex-grow:1;
+}
+
 a.active {
   color: #FF6B01;
 }
 
 .rc-pagination{
+  margin-bottom: 40px;
+
   display: flex;
   justify-content: center;
 
@@ -67,24 +80,26 @@ a.active {
 .rc-pagination-item:focus,
 .rc-pagination-item:hover {
   border-color: #FF6B01;
-  transition: all 0.3s;
 }
+
 .rc-pagination-item:focus a,
 .rc-pagination-item:hover a {
   color: #FF6B01;
 }
+
 .rc-pagination-item-active {
-  font-weight: 500;
-  background: #fff;
   border-color: #FF6B01;
 }
+
 .rc-pagination-item-active a {
   color: #FF6B01;
 }
+
 .rc-pagination-item-active:focus,
 .rc-pagination-item-active:hover {
   border-color: #FF6B01;
 }
+
 .rc-pagination-item-active:focus a,
 .rc-pagination-item-active:hover a {
   color: #FF6B01;

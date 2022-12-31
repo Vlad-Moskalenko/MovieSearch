@@ -1,0 +1,64 @@
+.searchForm {
+  margin: 40px auto;
+  width: 394px;
+
+  display: flex;
+  justify-content: center;
+
+  border-bottom: 1px solid #000000;
+  background-color: #fff;
+  transition: border-color 250ms ease-in-out;
+}
+
+.searchField {
+  width: 100%;
+  padding-bottom: 3px;
+
+  font-size: 20px;
+  line-height: 1.14;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+}
+
+.searchForm:hover,
+.searchForm:focus {
+  border-color: #FF6B01;
+}
+
+.searchField::placeholder{
+  font-size: 14px;
+  line-height: 1.14;
+  color: #FFFFFF;
+}
+
+.searchBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  transition: transform 250ms ease-in-out;
+}
+
+.searchBtn:hover,
+.searchBtn:focus {
+  transform: scale(1.5);
+}
+
+.searchIcon{
+  width: 30px;
+  height: 30px;
+}
+
+.itemError::after {
+  content: "Search result not successful. Enter the correct movie name";
+  position: absolute;
+  top: 40px;
+
+  font-size: 14px;
+  line-height: 1.14;
+  color: #FF001B;
+}

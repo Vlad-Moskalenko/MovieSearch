@@ -1,0 +1,15 @@
+.movieMetaDetails{
+  margin-top: 20px;
+}
+
+.metaDetails{
+  margin-top: 20px;
+  margin-left: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.title{
+  font-size: 23px;
+  font-weight: 700;
+}

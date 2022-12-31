@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import css from './Home.module.css';
-
 import { movieApi } from 'services/api';
 
 import { MoviesList, PagePagination } from 'components';
@@ -21,7 +19,7 @@ export const Home = ({ genres }) => {
   }, [page]);
 
   return (
-    <main className={css.home}>
+    <main>
       {trendingMovies.length > 0 && (
         <MoviesList genres={genres} movies={trendingMovies} link="movies/" />
       )}

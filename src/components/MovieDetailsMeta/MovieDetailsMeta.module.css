@@ -1,0 +1,42 @@
+.movieMetaWrapper{
+  display: flex;
+  gap: 40px;
+}
+
+.movieMeta{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.movieMetaItem{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.moviePoster {
+  width: 500px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 5px;
+}
+
+.movieTitle{
+  display: flex;
+  gap: 5px;
+  align-items: flex-start;
+}
+
+.movieRating{
+  padding: 3px 12px;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  color: #fff;
+  background-color: #FF6B01;
+  border-radius: 5px;
+}

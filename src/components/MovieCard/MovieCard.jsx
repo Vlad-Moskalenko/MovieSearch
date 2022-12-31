@@ -32,7 +32,7 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
               <span className={css.vote}>{vote_average.toFixed(1)}</span>
             </h2>
             <p className={css.movieGenre}>
-              <span className={css.genres}>{genresString}</span>
+              <span className={css.genres}>{genresString || ''}</span>
               <span className={css.releaseDate}>
                 {release_date ? parseInt(release_date) : '-'}
               </span>

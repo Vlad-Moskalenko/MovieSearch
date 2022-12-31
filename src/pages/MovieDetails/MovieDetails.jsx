@@ -20,10 +20,11 @@ export const MovieDetails = () => {
   }, [movieId]);
 
   return (
-    <div className={css.movieDetailsWrapper}>
-      <NavLink to={backLinkHref}>Go Back</NavLink>;
-      <MovieDetailsMeta movieDetails={movieDetails} />
-      <AdditionalInfo location={backLinkHref} />
-    </div>
+    <main className={css.movieDetailsWrapper}>
+      <NavLink to={backLinkHref}>Go Back</NavLink>
+      <MovieDetailsMeta movieDetails={movieDetails}>
+        <AdditionalInfo location={backLinkHref} />
+      </MovieDetailsMeta>
+    </main>
   );
 };

@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import img404 from '../../images/404.jpg';
+
+import css from './Cast.module.css';
 
 import { movieApi } from 'services/api';
 
@@ -14,16 +17,29 @@ export const Cast = () => {
   return (
     <>
       {cast.length > 0 && (
-        <ul>
+        <ul className={css.castList}>
           {cast.map(({ id, name, profile_path, character }) => (
-            <li key={id}>
+            <li className={css.castItem} key={id}>
               <img
-                src={`https://image.tmdb.org/t/p/w500${profile_path}`}
+                className={css.castAvatar}
+                src={
+                  profile_path
+                    ? `https://image.tmdb.org/t/p/w500${profile_path}`
+                    : img404
+                }
                 alt={name}
                 width="100px"
               />
-              <p>{name}</p>
-              <p>Character: {character}</p>
+              <div className={css.castMeta}>
+                <p>
+                  <span>Actor:</span>
+                  {name || 'unknown'}
+                </p>
+                <p>
+                  <span>Character:</span>
+                  {character || 'unknown'}
+                </p>
+              </div>
             </li>
           ))}
         </ul>

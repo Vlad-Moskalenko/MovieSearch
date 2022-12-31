@@ -1,11 +1,13 @@
 // import css from './AdditionalInfo.module.css'
 import { NavLink, Outlet } from 'react-router-dom';
 
+import css from './AdditionalInfo.module.css';
+
 export const AdditionalInfo = ({ location }) => {
   return (
-    <div>
-      <h3>Additional information</h3>
-      <ul>
+    <details className={css.movieMetaDetails}>
+      <summary className={css.title}>Additional information</summary>
+      <ul className={css.metaDetails}>
         <li>
           <NavLink to="cast" state={{ from: location }}>
             Cast
@@ -18,6 +20,6 @@ export const AdditionalInfo = ({ location }) => {
         </li>
       </ul>
       <Outlet />
-    </div>
+    </details>
   );
 };
