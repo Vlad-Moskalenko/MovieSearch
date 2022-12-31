@@ -1,18 +1,14 @@
 .home {
-  flex-grow: 1;
+  width: 100%;
+	margin: 40px auto;
+
   font-size: 12px;
   line-height: 1.33;
 }
 
-.homeWrapper{
-  padding-top: 20px;
-  padding-bottom: 40px;
-}
-
 @media screen and (min-width: 768px) {
-  .homeWrapper {
-    padding-top: 60px;
-    padding-bottom: 60px;
+  .home{
+    margin: 60px auto;
   }
 }
 

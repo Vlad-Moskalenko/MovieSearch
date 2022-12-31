@@ -22,18 +22,16 @@ export const Home = ({ genres }) => {
 
   return (
     <main className={css.home}>
-      <div className={`container ${css.homeWrapper}`}>
-        {trendingMovies.length > 0 && (
-          <MoviesList genres={genres} movies={trendingMovies} link="movies/" />
-        )}
-        {totalResults > 20 && (
-          <PagePagination
-            totalResults={totalResults}
-            currentPage={page}
-            setPage={setSearchParams}
-          />
-        )}
-      </div>
+      {trendingMovies.length > 0 && (
+        <MoviesList genres={genres} movies={trendingMovies} link="movies/" />
+      )}
+      {totalResults > 20 && (
+        <PagePagination
+          totalResults={totalResults}
+          currentPage={page}
+          setPage={setSearchParams}
+        />
+      )}
     </main>
   );
 };

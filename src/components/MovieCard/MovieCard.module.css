@@ -9,33 +9,22 @@
   overflow: hidden;
   cursor: pointer;
 
-  transition: color 250ms ease-in-out;
+  transition: transform 250ms ease-in-out;
   animation: blur 250ms ease-in-out;
 }
 
-.movie:hover {
-  color: #FF001B;
+.movie:hover,
+.movie:focus {
+  transform: scale(1.05);
 }
 
-.moviePoster {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top;
-
-  transition: transform 250ms ease-in-out,
+.movie:hover .movieMeta,
+.movie:focus .movieMeta {
+  bottom: 0;
 }
 
-.moviePoster:hover {
-  transform: scale(1.1);
-}
-
-.movieTitle {
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
-.posterWrapper {
+.movieWrapper {
+  position: relative;
   width: 100%;
   height: 402px;
 
@@ -43,7 +32,33 @@
   overflow: hidden;
 }
 
+.moviePoster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.movieMeta{
+  position: absolute;
+  bottom: -100%;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(255, 255, 255, 0.25);
+
+  transition: bottom 250ms ease-in-out
+}
+
+.movieTitle {
+  padding: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
 .movieGenre {
+  padding: 0 10px;
   color: #FF6B08;
 }
 
@@ -63,13 +78,10 @@
 @media screen and (min-width: 768px) {
   .movie {
     gap: 8px;
-  }
-
-  .movie {
     width: calc((768px - 3*32px)/2);
   }
 
-  .posterWrapper {
+  .movieWrapper {
     height: 455px;
   }
 }
@@ -77,13 +89,10 @@
 @media screen and (min-width: 1280px) {
   .movie {
     gap: 12px;
-  }
-
-  .movie {
     width: calc((1280px - 2*32px - 2*15.5px)/3);
   }
 
-  .posterWrapper {
+  .movieWrapper {
     height: 574px;
   }
 

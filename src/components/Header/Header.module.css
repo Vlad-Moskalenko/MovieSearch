@@ -1,40 +1,29 @@
 .header {
   min-height: 216px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-
-  @media screen and (max-width: 767px) {
-    min-height: 230px;
-  }
 }
 
 .headerHome {
   background-image: url('../../images/header-bg-1280.jpg');
   background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 
   animation: blur 250ms ease-in-out;
-
-  @media screen and (max-width: 1279px) {
-    background-image: url('../../images/header-bg-768.jpg');
-  }
-
-  @media screen and (max-width: 767px) {
-    background-image: url('../../images/header-bg-320.jpg');
-  }
 }
 
 .headerMovies {
   background-image: url('../../images/library-header-bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: bottom;
+  background-position: center;
 
   animation: blur-library 250ms ease-in-out;
 }
 
 .navigation{
+  margin: auto;
+
   display: flex;
   gap: 30px;
 }

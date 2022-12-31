@@ -19,23 +19,23 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
   return (
     <li className={css.movie} id={id}>
       <Link to={link + id} state={{ from: location }}>
-        <div className={css.posterWrapper}>
+        <div className={css.movieWrapper}>
           <img
             loading="lazy"
             className={css.moviePoster}
             src={imageSrc}
             alt={title}
           />
-        </div>
-        <div className={css.movieMeta}>
-          <h2 className={css.movieTitle} title={title}>
-            {title}
-          </h2>
-          <p className={css.movieGenre}>
-            <span className={css.genres}>{genresString}</span> |{' '}
-            {release_date ? parseInt(release_date) : '-'}
-            <span className={css.vote}>{vote_average.toFixed(1)}</span>
-          </p>
+          <div className={css.movieMeta}>
+            <h2 className={css.movieTitle} title={title}>
+              {title}{' '}
+              <span className={css.vote}>{vote_average.toFixed(1)}</span>
+            </h2>
+            <p className={css.movieGenre}>
+              <span className={css.genres}>{genresString}</span> |{' '}
+              {release_date ? parseInt(release_date) : '-'}
+            </p>
+          </div>
         </div>
       </Link>
     </li>

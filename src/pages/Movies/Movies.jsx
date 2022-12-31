@@ -9,7 +9,7 @@ export const Movies = ({ genres }) => {
   const [moviesList, setMoviesList] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [queryInput, setQueryInput] = useState();
+  const [queryInput, setQueryInput] = useState('');
 
   const query = searchParams.get('query') ?? '';
   const page = Number(searchParams.get('page')) || 1;
@@ -20,7 +20,7 @@ export const Movies = ({ genres }) => {
     if (query) {
       movieApi.searchMovie(query, page).then(({ results, total_results }) => {
         setMoviesList(results);
-        page === 1 && setTotalResults(total_results);
+        setTotalResults(total_results);
       });
     }
 

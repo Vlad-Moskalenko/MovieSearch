@@ -1,18 +1,8 @@
 .moviesList {
-  display: flex;
+  padding: 0 15px;
+  margin-bottom: 60px;
   justify-content: center;
+  display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-}
-
-@media screen and (min-width: 768px) {
-  .moviesList {
-    gap: 32px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .moviesList {
-    gap: 32px 15.5px;
-  }
+  gap: 30px 20px;
 }
