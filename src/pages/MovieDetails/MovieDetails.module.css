@@ -1,4 +1,7 @@
 .movieDetailsWrapper{
   padding: 0 40px;
-  margin: 40px auto;
+  margin: 5vh auto;
+
+  min-height: 65vh;
+  overflow-y: hidden;
 }

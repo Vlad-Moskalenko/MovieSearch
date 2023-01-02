@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useParams, NavLink, useLocation } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 
-import { MovieDetailsMeta, AdditionalInfo } from 'components';
+import { MovieDetailsMeta, AdditionalInfo, BackLink } from 'components';
 
 import css from './MovieDetails.module.css';
 
@@ -21,7 +21,7 @@ export const MovieDetails = () => {
 
   return (
     <main className={css.movieDetailsWrapper}>
-      <NavLink to={backLinkHref}>Go Back</NavLink>
+      <BackLink location={backLinkHref} />
       <MovieDetailsMeta movieDetails={movieDetails}>
         <AdditionalInfo location={backLinkHref} />
       </MovieDetailsMeta>
