@@ -1,7 +1,9 @@
 .movieDetailsWrapper{
+  position: relative;
+  min-height: 65vh;
+
   padding: 0 40px;
   margin: 5vh auto;
 
-  min-height: 65vh;
   overflow-y: hidden;
 }

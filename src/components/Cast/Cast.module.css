@@ -1,6 +1,6 @@
 .castList{
-  height: 320px;
-  padding: 15px;
+  height: 150px;
+  padding: 20px 0;
 
   display: flex;
   flex-wrap: wrap;
