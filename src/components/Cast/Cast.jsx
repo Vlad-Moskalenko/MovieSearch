@@ -16,7 +16,7 @@ export const Cast = () => {
 
   return (
     <>
-      {cast.length > 0 && (
+      {cast.length > 0 ? (
         <ul className={css.castList}>
           {cast.map(({ id, name, profile_path, character }) => (
             <li className={css.castItem} key={id}>
@@ -27,7 +27,7 @@ export const Cast = () => {
                     ? `https://image.tmdb.org/t/p/w500${profile_path}`
                     : img404
                 }
-                alt={name}
+                alt={name || 'unknown'}
                 width="100px"
               />
               <div className={css.castMeta}>
@@ -43,6 +43,8 @@ export const Cast = () => {
             </li>
           ))}
         </ul>
+      ) : (
+        <div className={css.empty}>Can't find information about cast...</div>
       )}
     </>
   );

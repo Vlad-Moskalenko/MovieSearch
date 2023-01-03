@@ -17,7 +17,7 @@ export const Reviews = () => {
 
   return (
     <>
-      {reviews.length > 0 && (
+      {reviews.length > 0 ? (
         <ul className={css.reviewsList}>
           {reviews.map(({ id, author, content }) => (
             <li key={id}>
@@ -26,6 +26,8 @@ export const Reviews = () => {
             </li>
           ))}
         </ul>
+      ) : (
+        <div className={css.empty}>No reviews...</div>
       )}
     </>
   );

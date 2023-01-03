@@ -12,10 +12,18 @@ export const Home = ({ genres }) => {
   const page = Number(searchParams.get('page')) || 1;
 
   useEffect(() => {
-    movieApi.getTrendingMovies(page).then(({ results, total_results }) => {
-      setTrendingMovies(results);
-      setTotalResults(total_results);
-    });
+    movieApi
+      .getTrendingMovies(page)
+      .then(({ results, total_results }) => {
+        setTrendingMovies(results);
+        setTotalResults(total_results);
+      })
+      .finally(() =>
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        })
+      );
   }, [page]);
 
   return (

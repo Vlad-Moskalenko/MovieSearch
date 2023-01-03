@@ -18,10 +18,18 @@ export const Movies = ({ genres }) => {
     setQueryInput(query);
 
     if (query) {
-      movieApi.searchMovie(query, page).then(({ results, total_results }) => {
-        setMoviesList(results);
-        setTotalResults(total_results);
-      });
+      movieApi
+        .searchMovie(query, page)
+        .then(({ results, total_results }) => {
+          setMoviesList(results);
+          setTotalResults(total_results);
+        })
+        .finally(() =>
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+          })
+        );
     }
 
     if (query === '') {

@@ -2,11 +2,21 @@
   position: absolute;
   top: 0;
 
-  padding: 3px 12px;
+  padding: 3px 12px 3px 0px;
 
-  vertical-align: middle;
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
 
   color: #fff;
   background: #FF6B01;
   border-radius: 5px;
+
+  transition: color 0.3s ease-in-out;
+}
+
+.backLink:hover,
+.backlink:focus{
+  color: #000
 }
