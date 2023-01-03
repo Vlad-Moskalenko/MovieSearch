@@ -33,6 +33,15 @@
 .navigation a{
   font-size: 32px;
   font-weight: 700;
+
   color: #FFFFFF;
   text-decoration: none;
+
+  transition: color 250ms ease-in-out, border-bottom 250ms ease-in-out;
+}
+
+.navigation a:hover,
+.navigation a:focus {
+  color: #FF6B01;
+  outline: none;
 }

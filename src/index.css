@@ -55,8 +55,13 @@ main{
   flex-grow:1;
 }
 
-a.active {
+nav > a.active {
   color: #FF6B01;
+  border-bottom: 4px solid #FF001B;
+}
+
+details a.active{
+  font-weight: 700;
 }
 
 .rc-pagination{

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import Notiflix from 'notiflix';
+
 import { MoviesList, PagePagination, SearchField } from 'components';
 
 import { movieApi } from 'services/api';
@@ -44,7 +46,7 @@ export const Movies = ({ genres }) => {
     const { value } = e.target.query;
 
     if (value === '') {
-      alert('Search field is empty!!!');
+      Notiflix.Notify.failure('Search field is empty!!!');
       return;
     }
 

@@ -17,8 +17,8 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
   const genresString = getGenres(genres, genre_ids);
 
   return (
-    <li className={css.movie} id={id}>
-      <Link to={link + id} state={{ from: location }}>
+    <li id={id}>
+      <Link className={css.movie} to={link + id} state={{ from: location }}>
         <div className={css.movieWrapper}>
           <img
             loading="lazy"

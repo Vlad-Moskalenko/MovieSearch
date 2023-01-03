@@ -12,6 +12,8 @@
   border-radius: 5px;
   overflow: hidden;
 
+  outline: none;
+
   transition: transform 250ms ease-in-out, box-shadow 250ms ease-in-out;
   animation: blur 250ms ease-in-out;
 }
