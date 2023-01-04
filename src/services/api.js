@@ -12,7 +12,7 @@ class movieDataBaseApi {
         page
       }
     }).then(({data, request}) => {
-      if(request.status !== 200){
+      if(request.status !== 200 || data.total_results === 0){
         throw new Error(request.status)
       }
       return data
@@ -27,7 +27,7 @@ class movieDataBaseApi {
         page
       }
     }).then(({data, request}) => {
-      if(request.status !== 200){
+      if(request.status !== 200 || data.total_results === 0){
         throw new Error(request.status)
       }
       return data
@@ -53,7 +53,7 @@ class movieDataBaseApi {
         api_key: this.API_KEY
       }
     }).then(({data, request}) => {
-      if(request.status !== 200){
+      if(request.status !== 200 || data.cast.length === 0){
         throw new Error(request.status)
       }
       return data
@@ -66,7 +66,8 @@ class movieDataBaseApi {
         api_key: this.API_KEY
       }
     }).then(({data, request}) => {
-      if(request.status !== 200){
+      console.log(data.results.length)
+      if(request.status !== 200 || data.results.length === 0){
         throw new Error(request.status)
       }
       return data

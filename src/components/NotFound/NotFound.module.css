@@ -1,0 +1,10 @@
+.error{
+  width: 100%;
+  max-height: 60vh;
+
+  object-fit: contain;
+}
+
+.errorText {
+  text-align: center;
+}

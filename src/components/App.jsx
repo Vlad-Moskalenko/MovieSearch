@@ -7,10 +7,10 @@ import {
   Home,
   MovieDetails,
   Movies,
-  NotFound,
   Cast,
   Reviews,
   SharedLayout,
+  StatusProvider,
 } from 'components';
 
 export const App = () => {
@@ -22,17 +22,19 @@ export const App = () => {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home genres={genres} />} />
-          <Route path="movies" element={<Movies genres={genres} />} />
-          <Route path="movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
+      <StatusProvider>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route index element={<Home genres={genres} />} />
+            <Route path="movies" element={<Movies genres={genres} />} />
+            <Route path="movies/:movieId" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
+            <Route path="*" element={<Home genres={genres} />} />
           </Route>
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+        </Routes>
+      </StatusProvider>
     </>
   );
 };

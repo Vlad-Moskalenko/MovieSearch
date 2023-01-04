@@ -15,10 +15,7 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
           alt={title}
         />
       ) : (
-        <NotFound
-          className={css.moviePoster}
-          title="Oops! Poster not found..."
-        />
+        <NotFound className={css.moviePoster} />
       )}
       <div>
         <ul className={css.movieMeta}>
