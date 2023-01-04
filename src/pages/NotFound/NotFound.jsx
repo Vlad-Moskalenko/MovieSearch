@@ -1,17 +1,7 @@
 import img from '../../images/error.gif';
 
-export const NotFound = () => {
-  return (
-    <img
-      style={{
-        display: 'block',
-        width: '250px',
-        height: '250px',
-        objectFit: 'contain',
-        margin: '0 auto',
-      }}
-      src={img}
-      alt="Error"
-    />
-  );
-};
+import css from './NotFound.module.css';
+
+export const NotFound = ({ className }) => (
+  <img className={className || css.error} src={img} alt="Error" />
+);

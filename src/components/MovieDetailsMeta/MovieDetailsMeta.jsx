@@ -1,17 +1,25 @@
 import css from './MovieDetailsMeta.module.css';
-import image404 from '../../images/404.jpg';
+
+import { NotFound } from 'components';
 
 export const MovieDetailsMeta = ({ movieDetails, children }) => {
   const { title, poster_path, vote_average, release_date, overview, genres } =
     movieDetails;
 
-  const imageSrc = poster_path
-    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-    : image404;
-
   return (
     <article className={css.movieMetaWrapper}>
-      <img className={css.moviePoster} src={imageSrc} alt={title} />
+      {poster_path ? (
+        <img
+          className={css.moviePoster}
+          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+          alt={title}
+        />
+      ) : (
+        <NotFound
+          className={css.moviePoster}
+          title="Oops! Poster not found..."
+        />
+      )}
       <div>
         <ul className={css.movieMeta}>
           <li className={css.movieMetaItem}>

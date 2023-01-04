@@ -17,7 +17,7 @@
 
 .moviePoster {
   width: 25vw;
-  max-height: 65vh;
+  height: 65vh;
   object-fit: cover;
   object-position: center;
 

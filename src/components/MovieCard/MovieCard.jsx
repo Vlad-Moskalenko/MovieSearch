@@ -4,6 +4,8 @@ import { getGenres } from 'services/getGenres';
 
 import { Link, useLocation } from 'react-router-dom';
 
+import { NotFound } from 'components';
+
 export const MovieCard = ({ movieData, genres, link = '' }) => {
   const location = useLocation();
 
@@ -20,12 +22,19 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
     <li id={id}>
       <Link className={css.movie} to={link + id} state={{ from: location }}>
         <div className={css.movieWrapper}>
-          <img
-            loading="lazy"
-            className={css.moviePoster}
-            src={imageSrc}
-            alt={title}
-          />
+          {poster_path ? (
+            <img
+              loading="lazy"
+              className={css.moviePoster}
+              src={imageSrc}
+              alt={title}
+            />
+          ) : (
+            <NotFound
+              className={css.moviePoster}
+              title={'Oops! Poster not found...'}
+            />
+          )}
           <div className={css.movieMeta}>
             <h2 className={css.movieTitle} title={title}>
               {title}

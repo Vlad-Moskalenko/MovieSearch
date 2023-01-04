@@ -1,12 +1,9 @@
 .castList{
-  height: 150px;
   padding: 20px 0;
 
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-
-  overflow-y: scroll;
 }
 
 .castItem{

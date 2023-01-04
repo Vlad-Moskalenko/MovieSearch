@@ -1,5 +1,4 @@
 .reviewsList{
-  height: 150px;
   padding: 20px 0;
 
   display: flex;
@@ -8,8 +7,6 @@
 
   text-align: justify;
   text-indent: 20px;
-
-  overflow-y: scroll;
 }
 
 .author{
