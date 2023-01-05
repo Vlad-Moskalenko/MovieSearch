@@ -6,7 +6,7 @@ import { useStatus } from 'components/StatusProvider/StatusProvider';
 
 import { MoviesList, NotFound, PagePagination, Spinner } from 'components';
 
-export const Home = ({ genres }) => {
+const Home = ({ genres }) => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [totalResults, setTotalResults] = useState();
@@ -50,3 +50,5 @@ export const Home = ({ genres }) => {
     </main>
   );
 };
+
+export default Home;

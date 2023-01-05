@@ -7,7 +7,7 @@ import { movieApi } from 'services/api';
 
 import { Spinner } from 'components';
 
-export const Reviews = () => {
+const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const [status, setStatus] = useState('success');
@@ -41,3 +41,5 @@ export const Reviews = () => {
     </div>
   );
 };
+
+export default Reviews;

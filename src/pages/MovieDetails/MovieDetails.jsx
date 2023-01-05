@@ -14,7 +14,7 @@ import css from './MovieDetails.module.css';
 import { movieApi } from 'services/api';
 import { useStatus } from 'components/StatusProvider/StatusProvider';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
   const location = useLocation();
@@ -46,7 +46,9 @@ export const MovieDetails = () => {
         </>
       )}
       {status === 'error' && <NotFound title="Oops, something went wrong..." />}
-      {status === 'pending' && <Spinner size="120" />}
+      {status === 'pending' && <Spinner />}
     </main>
   );
 };
+
+export default MovieDetails;

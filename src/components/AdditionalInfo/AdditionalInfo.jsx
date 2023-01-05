@@ -1,5 +1,8 @@
 // import css from './AdditionalInfo.module.css'
+import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
+
+import { Spinner } from 'components';
 
 import css from './AdditionalInfo.module.css';
 
@@ -19,7 +22,9 @@ export const AdditionalInfo = ({ location }) => {
           </NavLink>
         </li>
       </ul>
-      <Outlet />
+      <Suspense fallback={<Spinner size="80" />}>
+        <Outlet />
+      </Suspense>
     </details>
   );
 };

@@ -1,12 +1,15 @@
 import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 
-import { Header, Footer } from 'components';
+import { Header, Footer, Spinner } from 'components';
 
 export const SharedLayout = () => {
   return (
     <>
       <Header />
-      <Outlet />
+      <Suspense fallback={<Spinner />}>
+        <Outlet />
+      </Suspense>
       <Footer />
     </>
   );

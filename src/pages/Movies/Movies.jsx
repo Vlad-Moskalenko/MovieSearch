@@ -14,7 +14,7 @@ import {
 import { movieApi } from 'services/api';
 import { useStatus } from 'components/StatusProvider/StatusProvider';
 
-export const Movies = ({ genres }) => {
+const Movies = ({ genres }) => {
   const [moviesList, setMoviesList] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -92,3 +92,5 @@ export const Movies = ({ genres }) => {
     </main>
   );
 };
+
+export default Movies;

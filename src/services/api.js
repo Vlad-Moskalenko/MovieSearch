@@ -66,7 +66,6 @@ class movieDataBaseApi {
         api_key: this.API_KEY
       }
     }).then(({data, request}) => {
-      console.log(data.results.length)
       if(request.status !== 200 || data.results.length === 0){
         throw new Error(request.status)
       }

@@ -9,7 +9,7 @@ import css from './Cast.module.css';
 
 import { movieApi } from 'services/api';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState(0);
   const [status, setStatus] = useState('success');
@@ -63,3 +63,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;
