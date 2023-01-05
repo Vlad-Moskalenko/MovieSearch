@@ -48,7 +48,7 @@ const Movies = ({ genres }) => {
       setMoviesList([]);
       setTotalResults(0);
     }
-  }, [query, page, setStatus]);
+  }, [query, page]);
 
   const handleFormSubmit = e => {
     e.preventDefault();

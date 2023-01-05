@@ -32,7 +32,7 @@ const MovieDetails = () => {
         })
         .catch(() => setStatus('error'));
     }
-  }, [movieId, setStatus]);
+  }, [movieId]);
 
   return (
     <main className={css.movieDetailsWrapper}>
