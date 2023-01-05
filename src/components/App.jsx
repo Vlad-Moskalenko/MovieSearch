@@ -3,7 +3,7 @@ import { useState, useEffect, lazy } from 'react';
 
 import { movieApi } from 'services/api';
 
-import { SharedLayout, StatusProvider } from 'components';
+import { SharedLayout } from 'components';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const Movies = lazy(() => import('../pages/Movies/Movies'));
@@ -20,19 +20,17 @@ export const App = () => {
 
   return (
     <>
-      <StatusProvider>
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home genres={genres} />} />
-            <Route path="/movies" element={<Movies genres={genres} />} />
-            <Route path="/movies/:movieId" element={<MovieDetails />}>
-              <Route path="cast" element={<Cast />} />
-              <Route path="reviews" element={<Reviews />} />
-            </Route>
-            <Route path="*" element={<Home genres={genres} />} />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home genres={genres} />} />
+          <Route path="/movies" element={<Movies genres={genres} />} />
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
           </Route>
-        </Routes>
-      </StatusProvider>
+          <Route path="*" element={<Home genres={genres} />} />
+        </Route>
+      </Routes>
     </>
   );
 };

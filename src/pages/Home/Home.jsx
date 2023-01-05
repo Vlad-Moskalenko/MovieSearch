@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { movieApi } from 'services/api';
-import { useStatus } from 'components/StatusProvider/StatusProvider';
 
 import { MoviesList, NotFound, PagePagination, Spinner } from 'components';
 
@@ -11,7 +10,7 @@ const Home = ({ genres }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [totalResults, setTotalResults] = useState();
   const page = Number(searchParams.get('page')) || 1;
-  const { status, setStatus } = useStatus();
+  const [status, setStatus] = useState('success');
 
   useEffect(() => {
     setStatus('pending');
@@ -29,7 +28,7 @@ const Home = ({ genres }) => {
         setStatus('success');
       })
       .catch(() => setStatus('error'));
-  }, [page, setStatus]);
+  }, [page]);
 
   return (
     <main>

@@ -12,14 +12,13 @@ import {
 import css from './MovieDetails.module.css';
 
 import { movieApi } from 'services/api';
-import { useStatus } from 'components/StatusProvider/StatusProvider';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
-  const { status, setStatus } = useStatus();
+  const [status, setStatus] = useState('success');
 
   useEffect(() => {
     if (movieId) {

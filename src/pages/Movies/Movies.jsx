@@ -12,14 +12,13 @@ import {
 } from 'components';
 
 import { movieApi } from 'services/api';
-import { useStatus } from 'components/StatusProvider/StatusProvider';
 
 const Movies = ({ genres }) => {
   const [moviesList, setMoviesList] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
   const [queryInput, setQueryInput] = useState('');
-  const { status, setStatus } = useStatus();
+  const [status, setStatus] = useState('success');
 
   const query = searchParams.get('query') ?? '';
   const page = Number(searchParams.get('page')) || 1;
