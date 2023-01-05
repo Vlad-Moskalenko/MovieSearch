@@ -22,14 +22,14 @@ export const App = () => {
     <>
       <StatusProvider>
         <Routes>
-          <Route path="filmoteka-React/" element={<SharedLayout />}>
+          <Route path="/filmoteka-React/" element={<SharedLayout />}>
             <Route index element={<Home genres={genres} />} />
             <Route path="movies" element={<Movies genres={genres} />} />
             <Route path="movies/:movieId" element={<MovieDetails />}>
               <Route path="cast" element={<Cast />} />
               <Route path="reviews" element={<Reviews />} />
             </Route>
-            <Route path="*" element={<Home genres={genres} />} />
+            {/* <Route path="*" element={<Home genres={genres} />} /> */}
           </Route>
         </Routes>
       </StatusProvider>
