@@ -6,38 +6,34 @@ import {
   AdditionalInfo,
   BackLink,
   NotFound,
-  Spinner,
 } from 'components';
 
 import css from './MovieDetails.module.css';
 
 import { movieApi } from 'services/api';
-import { useStatus } from 'components/StatusProvider/StatusProvider';
+import { useError } from 'components/ErrorProvider/ErrorProvider';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState({});
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
-  const { status, setStatus } = useStatus();
+  const { error, setError } = useError();
 
   useEffect(() => {
     if (movieId) {
-      setStatus('pending');
-
       movieApi
         .getMovieDetails(movieId)
         .then(data => {
           setMovieDetails(data);
-          setStatus('success');
         })
-        .catch(() => setStatus('error'));
+        .catch(() => setError(true));
     }
-  }, [movieId, setStatus]);
+  }, [movieId, setError]);
 
   return (
     <main className={css.movieDetailsWrapper}>
-      {status === 'success' && (
+      {!error && (
         <>
           <BackLink location={backLinkHref} />
           <MovieDetailsMeta movieDetails={movieDetails}>
@@ -45,8 +41,9 @@ export const MovieDetails = () => {
           </MovieDetailsMeta>
         </>
       )}
-      {status === 'error' && <NotFound title="Oops, something went wrong..." />}
-      {status === 'pending' && <Spinner size="120" />}
+      {error && <NotFound title="Oops, something went wrong..." />}
     </main>
   );
 };
+
+export default MovieDetails;

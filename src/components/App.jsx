@@ -1,17 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy } from 'react';
 
 import { movieApi } from 'services/api';
 
-import {
-  Home,
-  MovieDetails,
-  Movies,
-  Cast,
-  Reviews,
-  SharedLayout,
-  StatusProvider,
-} from 'components';
+import { Cast, Reviews, SharedLayout, ErrorProvider } from 'components';
+
+const Home = lazy(() => import('../pages/Home/Home'));
+const Movies = lazy(() => import('../pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails/MovieDetails'));
 
 export const App = () => {
   const [genres, setGenres] = useState([]);
@@ -22,7 +18,7 @@ export const App = () => {
 
   return (
     <>
-      <StatusProvider>
+      <ErrorProvider>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home genres={genres} />} />
@@ -34,7 +30,7 @@ export const App = () => {
             <Route path="*" element={<Home genres={genres} />} />
           </Route>
         </Routes>
-      </StatusProvider>
+      </ErrorProvider>
     </>
   );
 };
