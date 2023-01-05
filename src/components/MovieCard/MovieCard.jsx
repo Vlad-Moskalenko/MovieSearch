@@ -1,5 +1,5 @@
 import css from './MovieCard.module.css';
-import image404 from '../../images/404.jpg';
+
 import { getGenres } from 'services/getGenres';
 
 import { Link, useLocation } from 'react-router-dom';
@@ -12,10 +12,6 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
   const { poster_path, title, release_date, genre_ids, id, vote_average } =
     movieData;
 
-  const imageSrc = poster_path
-    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
-    : image404;
-
   const genresString = getGenres(genres, genre_ids);
 
   return (
@@ -26,7 +22,7 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
             <img
               loading="lazy"
               className={css.moviePoster}
-              src={imageSrc}
+              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
               alt={title}
             />
           ) : (
