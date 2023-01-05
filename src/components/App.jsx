@@ -29,7 +29,7 @@ export const App = () => {
               <Route path="cast" element={<Cast />} />
               <Route path="reviews" element={<Reviews />} />
             </Route>
-            <Route path="/*" element={<Home genres={genres} />} />
+            <Route path="*" element={<Home genres={genres} />} />
           </Route>
         </Routes>
       </StatusProvider>
