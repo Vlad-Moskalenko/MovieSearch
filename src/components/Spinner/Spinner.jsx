@@ -2,14 +2,17 @@ import { Vortex } from 'react-loader-spinner';
 
 import css from './Spinner.module.css';
 
-export const Spinner = () => (
-  <div className={css.spinnerWrapper}>
+export const Spinner = ({ size }) => (
+  <div className={!size && css.spinnerWrapper}>
     <Vortex
       visible={true}
-      height="150"
-      width="150"
+      height={size || '150'}
+      width={size || '150'}
       ariaLabel="vortex-loading"
-      wrapperStyle={{ margin: 'auto' }}
+      wrapperStyle={{
+        display: 'block',
+        margin: 'auto',
+      }}
       wrapperClass=""
       colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
     />

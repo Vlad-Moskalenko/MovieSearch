@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Vortex } from 'react-loader-spinner';
 
 import css from './Reviews.module.css';
 
 import { movieApi } from 'services/api';
+
+import { Spinner } from 'components';
 
 export const Reviews = () => {
   const { movieId } = useParams();
@@ -36,17 +37,7 @@ export const Reviews = () => {
         </ul>
       )}
       {status === 'error' && <div className={css.empty}>No reviews...</div>}
-      {status === 'pending' && (
-        <Vortex
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="vortex-loading"
-          wrapperStyle={{ display: 'block', margin: 'auto' }}
-          wrapperClass=""
-          colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
-        />
-      )}
+      {status === 'pending' && <Spinner size="80" />}
     </div>
   );
 };

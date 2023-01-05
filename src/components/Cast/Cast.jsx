@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Vortex } from 'react-loader-spinner';
 
 import img404 from '../../images/404.jpg';
+
+import { Spinner } from 'components';
 
 import css from './Cast.module.css';
 
@@ -58,17 +59,7 @@ export const Cast = () => {
       {status === 'error' && (
         <div className={css.empty}>Can't find information about cast...</div>
       )}
-      {status === 'pending' && (
-        <Vortex
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="vortex-loading"
-          wrapperStyle={{ display: 'block', margin: 'auto' }}
-          wrapperClass=""
-          colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
-        />
-      )}
+      {status === 'pending' && <Spinner size="80" />}
     </>
   );
 };

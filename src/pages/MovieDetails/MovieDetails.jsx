@@ -46,7 +46,7 @@ export const MovieDetails = () => {
         </>
       )}
       {status === 'error' && <NotFound title="Oops, something went wrong..." />}
-      {status === 'pending' && <Spinner />}
+      {status === 'pending' && <Spinner size="120" />}
     </main>
   );
 };
