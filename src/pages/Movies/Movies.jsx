@@ -73,19 +73,23 @@ const Movies = ({ genres }) => {
         queryInput={queryInput}
       />
       {(status === 'success' || status === 'pending') && (
-        <MoviesList movies={moviesList} genres={genres} />
+        <>
+          <MoviesList movies={moviesList} genres={genres} />
+          {totalResults > 20 && (
+            <PagePagination
+              totalResults={totalResults}
+              currentPage={page}
+              setPage={setQueryString}
+            />
+          )}
+        </>
       )}
+
+      {status === 'pending' && <Spinner />}
+
       {status === 'error' && (
         <NotFound
           title={`Oops! We couldn't find any movie with title - ${query}...`}
-        />
-      )}
-      {status === 'pending' && <Spinner />}
-      {status === 'success' && totalResults > 20 && (
-        <PagePagination
-          totalResults={totalResults}
-          currentPage={page}
-          setPage={setQueryString}
         />
       )}
     </main>

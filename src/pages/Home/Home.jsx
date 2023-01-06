@@ -44,7 +44,9 @@ const Home = ({ genres }) => {
           )}
         </>
       )}
+
       {status === 'error' && <NotFound />}
+
       {status === 'pending' && <Spinner />}
     </main>
   );

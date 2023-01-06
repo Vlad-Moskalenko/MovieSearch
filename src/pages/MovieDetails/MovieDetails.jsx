@@ -44,7 +44,9 @@ const MovieDetails = () => {
           </MovieDetailsMeta>
         </>
       )}
+
       {status === 'error' && <NotFound title="Oops, something went wrong..." />}
+
       {status === 'pending' && <Spinner />}
     </main>
   );
