@@ -8,17 +8,6 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-
-  animation: blur 250ms ease-in-out;
-}
-
-.headerMovies {
-  background-image: url('../../images/library-header-bg.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-
-  animation: blur-library 250ms ease-in-out;
 }
 
 .navigation{
@@ -44,4 +33,9 @@
 .navigation a:focus {
   color: #FF6B01;
   outline: none;
+}
+
+.active {
+  color: #FF6B01;
+  border-bottom: 4px solid #FF001B;
 }

@@ -43,24 +43,19 @@ const Movies = ({ genres }) => {
         })
         .catch(() => setStatus('error'));
     }
-
-    if (query === '') {
-      setMoviesList([]);
-      setTotalResults(0);
-    }
   }, [query, page]);
 
   const handleFormSubmit = e => {
     e.preventDefault();
 
-    const { value } = e.target.query;
+    const query = e.target.query.value.trim();
 
-    if (value === '') {
+    if (query === '') {
       Notiflix.Notify.failure('Search field is empty!!!');
       return;
     }
 
-    setSearchParams({ query: value, page: 1 });
+    setSearchParams({ query: query, page: 1 });
   };
 
   const setQueryString = page => setSearchParams({ query: query, ...page });

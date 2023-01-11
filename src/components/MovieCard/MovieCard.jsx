@@ -26,10 +26,7 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
               alt={title}
             />
           ) : (
-            <NotFound
-              className={css.moviePoster}
-              title={'Oops! Poster not found...'}
-            />
+            <NotFound className={css.moviePoster} />
           )}
           <div className={css.movieMeta}>
             <h2 className={css.movieTitle} title={title}>

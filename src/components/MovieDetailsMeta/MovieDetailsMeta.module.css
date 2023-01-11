@@ -1,6 +1,14 @@
 .movieMetaWrapper{
   display: flex;
   gap: 40px;
+
+  color: #fff;
+}
+
+.movieMetaWrapper h3,
+.movieMetaWrapper h2,
+.movieMetaWrapper summary{
+  color:#FF6B01
 }
 
 .movieMeta{
@@ -28,6 +36,8 @@
   display: flex;
   gap: 5px;
   align-items: flex-start;
+
+  color:#FF6B01
 }
 
 .movieRating{

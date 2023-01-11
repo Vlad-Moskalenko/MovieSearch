@@ -12,12 +12,20 @@ export const AdditionalInfo = ({ location }) => {
       <summary className={css.title}>Additional information</summary>
       <ul className={css.metaDetails}>
         <li>
-          <NavLink to="cast" state={{ from: location }}>
+          <NavLink
+            className={({ isActive }) => (isActive ? css.active : undefined)}
+            to="cast"
+            state={{ from: location }}
+          >
             Cast
           </NavLink>
         </li>
         <li>
-          <NavLink to="reviews" state={{ from: location }}>
+          <NavLink
+            className={({ isActive }) => (isActive ? css.active : undefined)}
+            to="reviews"
+            state={{ from: location }}
+          >
             Reviews
           </NavLink>
         </li>
