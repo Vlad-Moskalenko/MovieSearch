@@ -5,8 +5,8 @@
   display: flex;
   justify-content: center;
 
-  border-bottom: 1px solid #000000;
-  background-color: #fff;
+  border-bottom: 1px solid #FFFFFF;
+
   transition: border-color 250ms ease-in-out;
 }
 
@@ -21,24 +21,27 @@
   border: none;
   outline: none;
 
+  color: #FFFFFF;
+
   cursor: pointer;
 }
 
 .searchForm:hover,
-.searchForm:focus {
+.searchForm:focus-within,
+.searchForm:active {
   border-color: #FF6B01;
 }
 
 .searchField::placeholder{
   font-size: 14px;
   line-height: 1.14;
-  color: #FFFFFF;
 }
 
 .searchBtn {
   background-color: transparent;
   border: none;
   cursor: pointer;
+  outline: none;
 
   transition: transform 250ms ease-in-out;
 }

@@ -77,6 +77,8 @@
 
   font-size: 14px;
   text-transform: uppercase;
+
+  text-shadow: 2px 2px 4px #ff6b08;
 }
 
 .movieGenre {
@@ -87,7 +89,7 @@
   align-items: center;
   gap: 10px;
 
-  color: rgb(255, 107, 8);
+  color: #ff6b08;
 
   text-shadow: 2px 2px 4px #000;
 }

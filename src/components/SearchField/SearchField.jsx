@@ -14,6 +14,7 @@ export const SearchField = props => {
         value={queryInput}
         name="query"
         type="text"
+        autoComplete="off"
       />
       <button className={css.searchBtn} type="submit">
         <IconContext.Provider value={{ size: '20px' }}>

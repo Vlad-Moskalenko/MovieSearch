@@ -10,7 +10,6 @@ export const SharedLayout = () => {
       <Suspense fallback={<Spinner />}>
         <Outlet />
       </Suspense>
-      {/* <Footer /> */}
     </>
   );
 };
