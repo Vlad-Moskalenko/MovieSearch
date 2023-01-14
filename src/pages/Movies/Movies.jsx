@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
 import Notiflix from 'notiflix';
 
@@ -10,45 +11,32 @@ import {
   NotFound,
   Spinner,
 } from 'components';
-
-import { movieApi } from 'services/api';
+import { selectSearchMovies } from 'redux/selectors';
+import { getSearchMovie } from 'redux/operations';
 
 const Movies = ({ genres }) => {
-  const [moviesList, setMoviesList] = useState([]);
-  const [totalResults, setTotalResults] = useState(0);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [queryInput, setQueryInput] = useState('');
-  const [status, setStatus] = useState('success');
-
   const query = searchParams.get('query') ?? '';
   const page = Number(searchParams.get('page')) || 1;
+
+  const [queryInput, setQueryInput] = useState('');
+
+  const { searchMovies, isLoading, error, totalResults } =
+    useSelector(selectSearchMovies);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setQueryInput(query);
 
     if (query) {
-      setStatus('pending');
-
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-
-      movieApi
-        .searchMovie(query, page)
-        .then(({ results, total_results }) => {
-          setMoviesList(results);
-          setTotalResults(total_results);
-          setStatus('success');
-        })
-        .catch(() => setStatus('error'));
+      dispatch(getSearchMovie({ query, page }));
     }
-  }, [query, page]);
+  }, [query, page, dispatch]);
 
   const handleFormSubmit = e => {
     e.preventDefault();
 
-    const query = e.target.query.value.trim();
+    const query = e.target.query.value.toLowerCase().trim();
 
     if (query === '') {
       Notiflix.Notify.failure('Search field is empty!!!');
@@ -67,9 +55,9 @@ const Movies = ({ genres }) => {
         setQueryInput={setQueryInput}
         queryInput={queryInput}
       />
-      {(status === 'success' || status === 'pending') && (
+      {(!error || isLoading) && (
         <>
-          <MoviesList movies={moviesList} genres={genres} />
+          <MoviesList movies={searchMovies} genres={genres} />
           {totalResults > 20 && (
             <PagePagination
               totalResults={totalResults}
@@ -80,9 +68,9 @@ const Movies = ({ genres }) => {
         </>
       )}
 
-      {status === 'pending' && <Spinner />}
+      {isLoading && <Spinner />}
 
-      {status === 'error' && (
+      {error && (
         <NotFound
           title={`Oops! We couldn't find any movie with title - ${query}...`}
         />

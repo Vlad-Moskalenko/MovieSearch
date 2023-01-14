@@ -1,38 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-
-import { movieApi } from 'services/api';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { MoviesList, NotFound, PagePagination, Spinner } from 'components';
+import { selectTrendingMovies } from 'redux/selectors';
+import { getTrendingMovies } from 'redux/operations';
 
 const Home = ({ genres }) => {
-  const [trendingMovies, setTrendingMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [totalResults, setTotalResults] = useState();
   const page = Number(searchParams.get('page')) || 1;
-  const [status, setStatus] = useState('success');
+
+  const { trendingMovies, isLoading, error, totalResults } =
+    useSelector(selectTrendingMovies);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setStatus('pending');
-
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-
-    movieApi
-      .getTrendingMovies(page)
-      .then(({ results, total_results }) => {
-        setTrendingMovies(results);
-        setTotalResults(total_results);
-        setStatus('success');
-      })
-      .catch(() => setStatus('error'));
-  }, [page]);
+    dispatch(getTrendingMovies(page));
+  }, [page, dispatch]);
 
   return (
     <main>
-      {(status === 'success' || status === 'pending') && (
+      {(!error || isLoading) && (
         <>
           <MoviesList genres={genres} movies={trendingMovies} link="movies/" />
           {totalResults > 20 && (
@@ -45,9 +33,9 @@ const Home = ({ genres }) => {
         </>
       )}
 
-      {status === 'error' && <NotFound />}
+      {error && <NotFound />}
 
-      {status === 'pending' && <Spinner />}
+      {isLoading && <Spinner />}
     </main>
   );
 };

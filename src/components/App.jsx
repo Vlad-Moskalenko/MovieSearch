@@ -1,9 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
-import { useState, useEffect, lazy } from 'react';
-
-import { movieApi } from 'services/api';
+import { useEffect, lazy } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { SharedLayout } from 'components';
+import { getMoviesGenres } from 'redux/operations';
+import { selectMoviesGenres } from 'redux/selectors';
 
 const Home = lazy(() => import('../pages/Home/Home'));
 const Movies = lazy(() => import('../pages/Movies/Movies'));
@@ -12,11 +13,12 @@ const Cast = lazy(() => import('./Cast/Cast'));
 const Reviews = lazy(() => import('./Reviews/Reviews'));
 
 export const App = () => {
-  const [genres, setGenres] = useState([]);
+  const { genres } = useSelector(selectMoviesGenres);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    movieApi.getGenres().then(({ genres }) => setGenres(genres));
-  }, []);
+    dispatch(getMoviesGenres());
+  }, [dispatch]);
 
   return (
     <>

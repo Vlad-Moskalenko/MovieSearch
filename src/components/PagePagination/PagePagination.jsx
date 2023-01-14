@@ -5,7 +5,14 @@ import Pagination from 'rc-pagination';
 import './Pagination.css';
 
 export const PagePagination = ({ totalResults, currentPage, setPage }) => {
-  const handlePageClick = e => setPage({ page: e });
+  const handlePageClick = e => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+
+    setPage({ page: e });
+  };
 
   return (
     <Pagination

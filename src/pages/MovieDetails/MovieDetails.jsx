@@ -1,5 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { selectMovieDetails } from 'redux/selectors';
+import { getMovieDetails } from 'redux/operations';
 
 import {
   MovieDetailsMeta,
@@ -11,32 +15,23 @@ import {
 
 import css from './MovieDetails.module.css';
 
-import { movieApi } from 'services/api';
-
 const MovieDetails = () => {
   const { movieId } = useParams();
-  const [movieDetails, setMovieDetails] = useState({});
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
-  const [status, setStatus] = useState('success');
+
+  const { movieDetails, isLoading, error } = useSelector(selectMovieDetails);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (movieId) {
-      setStatus('pending');
-
-      movieApi
-        .getMovieDetails(movieId)
-        .then(data => {
-          setMovieDetails(data);
-          setStatus('success');
-        })
-        .catch(() => setStatus('error'));
+      dispatch(getMovieDetails(movieId));
     }
-  }, [movieId]);
+  }, [movieId, dispatch]);
 
   return (
     <main className={css.movieDetailsWrapper}>
-      {status === 'success' && (
+      {!error && (
         <>
           <BackLink location={backLinkHref} />
           <MovieDetailsMeta movieDetails={movieDetails}>
@@ -45,9 +40,9 @@ const MovieDetails = () => {
         </>
       )}
 
-      {status === 'error' && <NotFound title="Oops, something went wrong..." />}
+      {error && <NotFound title="Oops, something went wrong..." />}
 
-      {status === 'pending' && <Spinner />}
+      {isLoading && <Spinner />}
     </main>
   );
 };

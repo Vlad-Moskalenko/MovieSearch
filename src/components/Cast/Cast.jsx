@@ -1,34 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import img404 from '../../images/404.jpg';
 
 import { Spinner } from 'components';
+import { selectMovieCast } from 'redux/selectors';
+import { getMovieCast } from 'redux/operations';
 
 import css from './Cast.module.css';
 
-import { movieApi } from 'services/api';
-
 const Cast = () => {
   const { movieId } = useParams();
-  const [cast, setCast] = useState(0);
-  const [status, setStatus] = useState('success');
+  const { cast, isLoading, error } = useSelector(selectMovieCast);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setStatus('pending');
-
-    movieApi
-      .getMovieCredits(movieId)
-      .then(({ cast }) => {
-        setCast(cast);
-        setStatus('success');
-      })
-      .catch(() => setStatus('error'));
-  }, [movieId]);
+    dispatch(getMovieCast(movieId));
+  }, [dispatch, movieId]);
 
   return (
     <>
-      {status === 'success' && cast.length > 0 && (
+      {!error && cast.length > 0 && (
         <ul className={css.castList}>
           {cast.map(({ id, name, profile_path, character }) => (
             <li className={css.castItem} key={id}>
@@ -56,10 +49,10 @@ const Cast = () => {
           ))}
         </ul>
       )}
-      {status === 'error' && (
+      {error && (
         <div className={css.empty}>Can't find information about cast...</div>
       )}
-      {status === 'pending' && <Spinner size="80" />}
+      {isLoading && <Spinner size="80" />}
     </>
   );
 };
