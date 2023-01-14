@@ -7,18 +7,18 @@
   font-size: 20px;
 }
 
+.rc-pagination-item{
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+
+.rc-pagination-item a{
+  color: inherit
+}
+
 .rc-pagination li{
   font-family: inherit;
-}
-
-.rc-pagination-item:hover a,
-.rc-pagination-item:focus a {
-  color:#FF6B01;
-}
-
-.rc-pagination-item:focus,
-.rc-pagination-item:hover {
-  border-color: none;
 }
 
 .rc-pagination-item:focus a,
@@ -26,20 +26,36 @@
   color: #FF6B01;
 }
 
-.rc-pagination-item-active {
-  border-color: #FF6B01;
-}
-
 .rc-pagination-item-active a {
   color: #FF6B01;
-}
-
-.rc-pagination-item-active:focus,
-.rc-pagination-item-active:hover {
-  border-color: #FF6B01;
+  transform: scale(1.2);
+  font-weight: 700;
 }
 
 .rc-pagination-item-active:focus a,
 .rc-pagination-item-active:hover a {
   color: #FF6B01;
+}
+
+.rc-pagination-prev .rc-pagination-item-link,
+.rc-pagination-next .rc-pagination-item-link {
+  border: none;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.rc-pagination-prev:focus .rc-pagination-item-link,
+.rc-pagination-next:focus .rc-pagination-item-link,
+.rc-pagination-prev:hover .rc-pagination-item-link,
+.rc-pagination-next:hover .rc-pagination-item-link {
+  color: #fff;
+  background-color: #FF6B01;
+}
+
+.rc-pagination-prev button:after {
+  content: '❮';
+}
+
+.rc-pagination-next button:after {
+  content: '❯';
 }
