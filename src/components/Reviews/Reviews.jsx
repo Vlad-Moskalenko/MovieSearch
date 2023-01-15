@@ -11,7 +11,7 @@ import { Spinner } from 'components';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const { reviews, isLoading, error } = useSelector(selectMovieReviews);
+  const { reviews, status } = useSelector(selectMovieReviews);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Reviews = () => {
 
   return (
     <div className={css.reviewsWrapper}>
-      {!error && reviews.length > 0 && (
+      {status === 'success' && reviews.length > 0 && (
         <ul className={css.reviewsList}>
           {reviews.map(({ id, author, content }) => (
             <li key={id}>
@@ -32,8 +32,8 @@ const Reviews = () => {
           ))}
         </ul>
       )}
-      {error && <div className={css.empty}>No reviews...</div>}
-      {isLoading && <Spinner size="80" />}
+      {status === 'error' && <div className={css.empty}>No reviews...</div>}
+      {status === 'loading' && <Spinner size="80" />}
     </div>
   );
 };

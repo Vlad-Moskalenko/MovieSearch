@@ -1,6 +1,7 @@
 .backLink{
   position: absolute;
   top: 0;
+  z-index: 100;
 
   padding: 3px 12px 3px 0px;
 
@@ -12,8 +13,14 @@
   color: #fff;
   background: #FF6B01;
   border-radius: 5px;
+  text-shadow: 2px 2px 4px #000;
 
   transition: color 0.3s ease-in-out;
+}
+
+.backLink::before{
+  padding: 0 3px;
+  content: '❮';
 }
 
 .backLink:hover,

@@ -10,8 +10,15 @@ const searchMovieSlice = createSlice({
   initialState: {
     searchMovies: [],
     totalResults: 0,
-    isLoading: false,
-    error: null
+    status: null
+  },
+
+  reducers: {
+    clearSearchMovies(state){
+      state.searchMovies = [];
+      state.totalResults = 0;
+      state.status = null;
+    }
   },
 
   extraReducers: {
@@ -20,10 +27,11 @@ const searchMovieSlice = createSlice({
     [getSearchMovie.fulfilled](state, {payload}){
       state.searchMovies = payload.results
       state.totalResults = payload.total_results
-      state.isLoading = false
-      state.error = null
+      state.status = 'success'
     }
   }
 })
 
 export const searchMovieReducer = searchMovieSlice.reducer
+
+export const {clearSearchMovies} = searchMovieSlice.actions

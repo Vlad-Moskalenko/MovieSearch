@@ -12,7 +12,7 @@ import css from './Cast.module.css';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const { cast, isLoading, error } = useSelector(selectMovieCast);
+  const { cast, status } = useSelector(selectMovieCast);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Cast = () => {
 
   return (
     <>
-      {!error && cast.length > 0 && (
+      {status === 'success' && cast.length > 0 && (
         <ul className={css.castList}>
           {cast.map(({ id, name, profile_path, character }) => (
             <li className={css.castItem} key={id}>
@@ -51,10 +51,10 @@ const Cast = () => {
           ))}
         </ul>
       )}
-      {error && (
+      {status === 'error' && (
         <div className={css.empty}>Can't find information about cast...</div>
       )}
-      {isLoading && <Spinner size="80" />}
+      {status === 'loading' && <Spinner size="80" />}
     </>
   );
 };

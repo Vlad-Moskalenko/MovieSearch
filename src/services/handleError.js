@@ -1,4 +1,3 @@
-export const handleError = (state, {payload}) => {
-  state.isLoading = false
-  state.error = payload
+export const handleError = (state) => {
+  state.status = 'error'
 }

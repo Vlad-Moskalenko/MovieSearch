@@ -17,7 +17,7 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
   return (
     <li id={id}>
       <Link className={css.movie} to={link + id} state={{ from: location }}>
-        <div className={`${css.movieWrapper} ${css.spinner}`}>
+        <div className={css.movieWrapper}>
           {poster_path ? (
             <img
               loading="lazy"

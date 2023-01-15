@@ -10,8 +10,7 @@ const trendingMoviesSlice = createSlice({
   initialState: {
     trendingMovies: [],
     totalResults: 0,
-    isLoading: false,
-    error: null
+    status: null
   },
 
   extraReducers: {
@@ -20,8 +19,7 @@ const trendingMoviesSlice = createSlice({
     [getTrendingMovies.fulfilled](state, {payload}){
       state.trendingMovies = payload.results
       state.totalResults = payload.total_results
-      state.isLoading = false
-      state.error = null
+      state.status = 'success'
     }
   }
 })

@@ -9,8 +9,7 @@ const movieReviewsSlice = createSlice({
 
   initialState: {
     reviews: [],
-    isLoading: false,
-    error: null
+    status: null,
   },
 
   extraReducers: {
@@ -18,8 +17,7 @@ const movieReviewsSlice = createSlice({
     [getMovieReviews.pending]: handlePending,
     [getMovieReviews.fulfilled](state, {payload}){
       state.reviews = payload.results
-      state.isLoading = false
-      state.error = null
+      state.status = 'success'
     }
   }
 })

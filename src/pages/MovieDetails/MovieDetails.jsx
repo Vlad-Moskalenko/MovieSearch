@@ -20,7 +20,7 @@ const MovieDetails = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
-  const { movieDetails, isLoading, error } = useSelector(selectMovieDetails);
+  const { movieDetails, status } = useSelector(selectMovieDetails);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const MovieDetails = () => {
 
   return (
     <main className={css.movieDetailsWrapper}>
-      {!error && (
+      {status === 'success' && (
         <>
           <BackLink location={backLinkHref} />
           <MovieDetailsMeta movieDetails={movieDetails}>
@@ -40,9 +40,9 @@ const MovieDetails = () => {
         </>
       )}
 
-      {error && <NotFound title="Oops, something went wrong..." />}
+      {status === 'error' && <NotFound title="Oops, something went wrong..." />}
 
-      {isLoading && <Spinner />}
+      {status === 'loading' && <Spinner />}
     </main>
   );
 };

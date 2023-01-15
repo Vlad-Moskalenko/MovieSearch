@@ -13,6 +13,7 @@ import {
 } from 'components';
 import { selectSearchMovies } from 'redux/selectors';
 import { getSearchMovie } from 'redux/operations';
+import { clearSearchMovies } from 'redux/features/searchMovieSlice';
 
 const Movies = ({ genres }) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,12 +22,16 @@ const Movies = ({ genres }) => {
 
   const [queryInput, setQueryInput] = useState('');
 
-  const { searchMovies, isLoading, error, totalResults } =
+  const { searchMovies, status, totalResults } =
     useSelector(selectSearchMovies);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setQueryInput(query);
+
+    if (!query) {
+      dispatch(clearSearchMovies());
+    }
 
     if (query) {
       dispatch(getSearchMovie({ query, page }));
@@ -55,7 +60,7 @@ const Movies = ({ genres }) => {
         setQueryInput={setQueryInput}
         queryInput={queryInput}
       />
-      {(!error || isLoading) && (
+      {status !== 'error' && (
         <>
           <MoviesList movies={searchMovies} genres={genres} />
           {totalResults > 20 && (
@@ -68,9 +73,9 @@ const Movies = ({ genres }) => {
         </>
       )}
 
-      {isLoading && <Spinner />}
+      {status === 'loading' && <Spinner />}
 
-      {error && (
+      {status === 'error' && (
         <NotFound
           title={`Oops! We couldn't find any movie with title - ${query}...`}
         />

@@ -9,8 +9,7 @@ const moviesGenresSlice = createSlice({
 
   initialState: {
     genres: [],
-    isLoading: false,
-    error: null
+    status: null,
   },
 
   extraReducers: {
@@ -18,8 +17,7 @@ const moviesGenresSlice = createSlice({
     [getMoviesGenres.pending]:handlePending,
     [getMoviesGenres.fulfilled](state, {payload}){
       state.genres = payload.genres
-      state.isLoading = false
-      state.error = null
+      state.status = 'success'
     }
   }
 })

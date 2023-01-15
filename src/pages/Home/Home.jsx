@@ -10,7 +10,7 @@ const Home = ({ genres }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get('page')) || 1;
 
-  const { trendingMovies, isLoading, error, totalResults } =
+  const { trendingMovies, status, totalResults } =
     useSelector(selectTrendingMovies);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const Home = ({ genres }) => {
 
   return (
     <main>
-      {(!error || isLoading) && (
+      {status !== 'error' && (
         <>
           <MoviesList genres={genres} movies={trendingMovies} link="movies/" />
           {totalResults > 20 && (
@@ -33,9 +33,9 @@ const Home = ({ genres }) => {
         </>
       )}
 
-      {error && <NotFound />}
+      {status === 'error' && <NotFound />}
 
-      {isLoading && <Spinner />}
+      {status === 'loading' && <Spinner />}
     </main>
   );
 };
