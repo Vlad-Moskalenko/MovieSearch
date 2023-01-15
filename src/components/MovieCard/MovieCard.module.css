@@ -42,13 +42,12 @@
   content: " ";
 
   position: absolute;
-  top: calc(50% - 32px);
-  left: calc(50% - 32px);
+  top: calc(50% - 38px);
+  left: calc(50% - 38px);
   z-index: -1;
 
   width: 64px;
   height: 64px;
-  margin: 8px;
 
   border-radius: 50%;
   border: 6px solid #FF6B01;
