@@ -15,7 +15,9 @@ const Reviews = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMovieReviews(movieId));
+    if (movieId) {
+      dispatch(getMovieReviews(movieId));
+    }
   }, [movieId, dispatch]);
 
   return (

@@ -16,7 +16,9 @@ const Cast = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMovieCast(movieId));
+    if (movieId) {
+      dispatch(getMovieCast(movieId));
+    }
   }, [dispatch, movieId]);
 
   return (

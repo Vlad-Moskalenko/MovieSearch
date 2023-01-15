@@ -1,6 +1,5 @@
 export {NotFound} from './NotFound/NotFound'
 export {Header} from './Header/Header'
-export {Footer} from './Footer/Footer'
 export {SharedLayout} from './SharedLayout/SharedLayout'
 export {MovieCard} from './MovieCard/MovieCard'
 export {MoviesList} from './MoviesList/MoviesList'

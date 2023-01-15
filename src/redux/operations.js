@@ -17,7 +17,7 @@ axios.defaults.params = {
       return data
     }
     catch(e){
-      thunkApi.rejectWithValue(e.message)
+      return thunkApi.rejectWithValue(e.message)
     }
   })
 
@@ -33,7 +33,7 @@ axios.defaults.params = {
     }
 
     catch(e){
-      thunkApi.rejectWithValue(e.message)
+      return thunkApi.rejectWithValue(e.message)
     }
   })
 
@@ -48,7 +48,7 @@ axios.defaults.params = {
       return data
     }
     catch(e){
-      thunkApi.rejectWithValue(e.message)
+      return thunkApi.rejectWithValue(e.message)
     }
   })
 
@@ -63,7 +63,7 @@ axios.defaults.params = {
       return data
     }
     catch(e){
-      thunkApi.rejectWithValue(e.message)
+      return thunkApi.rejectWithValue(e.message)
     }
   })
 
@@ -78,7 +78,7 @@ axios.defaults.params = {
       return data
     }
     catch(e){
-      thunkApi.rejectWithValue(e.message)
+      return thunkApi.rejectWithValue(e.message)
     }
   })
 
@@ -92,7 +92,7 @@ axios.defaults.params = {
       return data
     }
     catch(e){
-      thunkApi.rejectWithValue(e.message)
+      return thunkApi.rejectWithValue(e.message)
     }
   })
 
