@@ -16,11 +16,13 @@ export const PagePagination = ({ totalResults, currentPage, setPage }) => {
 
   return (
     <Pagination
+      hideOnSinglePage
+      showPrevNextJumpers
+      showSizeChanger
       onChange={handlePageClick}
       current={currentPage}
       total={totalResults}
       pageSize={20}
-      showLessItems
       showTitle={false}
     />
   );

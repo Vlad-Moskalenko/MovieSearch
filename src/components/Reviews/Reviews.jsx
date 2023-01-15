@@ -35,7 +35,9 @@ const Reviews = () => {
           ))}
         </ul>
       )}
-      {status === 'error' && <div className={css.empty}>No reviews...</div>}
+      {(status === 'error' || reviews.length === 0) && (
+        <div className={css.empty}>No reviews...</div>
+      )}
       {status === 'loading' && <Spinner size="80" />}
     </div>
   );

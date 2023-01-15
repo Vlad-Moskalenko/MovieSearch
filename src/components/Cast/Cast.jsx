@@ -51,7 +51,7 @@ const Cast = () => {
           ))}
         </ul>
       )}
-      {status === 'error' && (
+      {(status === 'error' || cast.length === 0) && (
         <div className={css.empty}>Can't find information about cast...</div>
       )}
       {status === 'loading' && <Spinner size="80" />}

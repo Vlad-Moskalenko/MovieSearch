@@ -23,13 +23,11 @@ const Home = ({ genres }) => {
       {status !== 'error' && (
         <>
           <MoviesList genres={genres} movies={trendingMovies} link="movies/" />
-          {totalResults > 20 && (
-            <PagePagination
-              totalResults={totalResults}
-              currentPage={page}
-              setPage={setSearchParams}
-            />
-          )}
+          <PagePagination
+            totalResults={totalResults}
+            currentPage={page}
+            setPage={setSearchParams}
+          />
         </>
       )}
 

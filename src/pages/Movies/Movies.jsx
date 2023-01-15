@@ -63,13 +63,11 @@ const Movies = ({ genres }) => {
       {status !== 'error' && (
         <>
           <MoviesList movies={searchMovies} genres={genres} />
-          {totalResults > 20 && (
-            <PagePagination
-              totalResults={totalResults}
-              currentPage={page}
-              setPage={setQueryString}
-            />
-          )}
+          <PagePagination
+            totalResults={totalResults}
+            currentPage={page}
+            setPage={setQueryString}
+          />
         </>
       )}
 
