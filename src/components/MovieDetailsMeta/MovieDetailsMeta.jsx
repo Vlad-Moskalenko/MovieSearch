@@ -3,16 +3,26 @@ import css from './MovieDetailsMeta.module.css';
 import { NotFound } from 'components';
 
 export const MovieDetailsMeta = ({ movieDetails, children }) => {
-  const { title, poster_path, vote_average, release_date, overview, genres } =
-    movieDetails;
+  const {
+    title,
+    original_title,
+    poster_path,
+    backdrop_path,
+    vote_average,
+    release_date,
+    overview,
+    genres,
+  } = movieDetails;
 
   return (
     <article className={css.movieMetaWrapper}>
       {poster_path ? (
         <img
           className={css.moviePoster}
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-          alt={title}
+          src={`https://image.tmdb.org/t/p/w500/${
+            poster_path || backdrop_path
+          }`}
+          alt={title || original_title}
         />
       ) : (
         <NotFound className={css.moviePoster} />

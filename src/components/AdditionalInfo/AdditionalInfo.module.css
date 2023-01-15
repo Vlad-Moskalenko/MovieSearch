@@ -1,7 +1,5 @@
 .movieMetaDetails{
   margin-top: 20px;
-
-  cursor: pointer;
 }
 
 .metaDetails{
@@ -13,6 +11,8 @@
 .title{
   font-size: 23px;
   font-weight: 700;
+
+  cursor: pointer;
 }
 
 .active{

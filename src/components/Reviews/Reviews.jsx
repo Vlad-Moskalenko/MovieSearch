@@ -24,9 +24,12 @@ const Reviews = () => {
     <div className={css.reviewsWrapper}>
       {status === 'success' && reviews.length > 0 && (
         <ul className={css.reviewsList}>
-          {reviews.map(({ id, author, content }) => (
+          {reviews.map(({ id, author, content, created_at }) => (
             <li key={id}>
-              <p className={css.author}>{author}</p>
+              <p className={css.reviewsMeta}>
+                {author}{' '}
+                <span>{new Date(created_at).toLocaleDateString()}</span>
+              </p>
               <p>{content}</p>
             </li>
           ))}

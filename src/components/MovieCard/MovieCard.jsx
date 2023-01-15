@@ -9,8 +9,17 @@ import { NotFound } from 'components';
 export const MovieCard = ({ movieData, genres, link = '' }) => {
   const location = useLocation();
 
-  const { poster_path, title, release_date, genre_ids, id, vote_average } =
-    movieData;
+  const {
+    poster_path,
+    backdrop_path,
+    title,
+    original_title,
+    release_date,
+    genre_ids,
+    id,
+    vote_average,
+    popularity,
+  } = movieData;
 
   const genresString = getGenres(genres, genre_ids);
 
@@ -22,16 +31,20 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
             <img
               loading="lazy"
               className={css.moviePoster}
-              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500/${
+                poster_path || backdrop_path
+              }`}
               alt={title}
             />
           ) : (
             <NotFound className={css.moviePoster} />
           )}
           <div className={css.movieMeta}>
-            <h2 className={css.movieTitle} title={title}>
+            <h2 className={css.movieTitle} title={title || original_title}>
               {title}
-              <span className={css.vote}>{vote_average.toFixed(1)}</span>
+              <span className={css.vote}>
+                {vote_average.toFixed(1) || popularity.toFixed(1)}
+              </span>
             </h2>
             <p className={css.movieGenre}>
               <span className={css.genres}>{genresString || ''}</span>
