@@ -12,14 +12,15 @@ const movieDetailsSlice = createSlice({
     status: null,
   },
 
-  extraReducers: {
-    [getMovieDetails.rejected]:handleError,
-    [getMovieDetails.pending]:handlePending,
-    [getMovieDetails.fulfilled](state, {payload}){
-      state.movieDetails = payload
-      state.status = 'success'
-    }
-  }
+  extraReducers: builder => builder
+  .addCase(getMovieDetails.pending, handlePending)
+
+  .addCase(getMovieDetails.fulfilled, (state, {payload})=>{
+    state.movieDetails = payload
+    state.status = 'success'
+  })
+
+  .addCase(getMovieDetails.rejected, handleError)
 })
 
 export const movieDetailsReducer = movieDetailsSlice.reducer

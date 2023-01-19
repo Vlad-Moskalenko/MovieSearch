@@ -21,15 +21,16 @@ const searchMovieSlice = createSlice({
     }
   },
 
-  extraReducers: {
-    [getSearchMovie.rejected]:handleError,
-    [getSearchMovie.pending]:handlePending,
-    [getSearchMovie.fulfilled](state, {payload}){
+  extraReducers: builder => builder
+    .addCase(getSearchMovie.pending, handlePending)
+
+    .addCase(getSearchMovie.fulfilled, (state, {payload})=>{
       state.searchMovies = payload.results
       state.totalResults = payload.total_results
       state.status = 'success'
-    }
-  }
+    })
+
+    .addCase(getSearchMovie.rejected, handleError)
 })
 
 export const searchMovieReducer = searchMovieSlice.reducer

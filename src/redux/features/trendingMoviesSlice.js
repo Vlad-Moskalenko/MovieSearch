@@ -13,15 +13,16 @@ const trendingMoviesSlice = createSlice({
     status: null
   },
 
-  extraReducers: {
-    [getTrendingMovies.rejected]:handleError,
-    [getTrendingMovies.pending]:handlePending,
-    [getTrendingMovies.fulfilled](state, {payload}){
+  extraReducers: builder => builder
+    .addCase(getTrendingMovies.pending, handlePending)
+
+    .addCase(getTrendingMovies.fulfilled, (state, {payload}) => {
       state.trendingMovies = payload.results
       state.totalResults = payload.total_results
       state.status = 'success'
-    }
-  }
+    })
+
+    .addCase(getTrendingMovies.rejected, handleError)
 })
 
 export const trendingMoviesReducer = trendingMoviesSlice.reducer
