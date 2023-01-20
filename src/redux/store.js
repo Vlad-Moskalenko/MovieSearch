@@ -1,4 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
 import { trendingMoviesReducer } from "./features/trendingMoviesSlice";
 import { searchMovieReducer } from "./features/searchMovieSlice";
@@ -8,6 +19,12 @@ import { movieCastReducer } from "./features/movieCastSlice";
 import { movieReviewsReducer } from "./features/movieReviewsSlice";
 import { authReducer } from "./features/authSlice";
 
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ["user", "isAuth"]
+}
+
 export const store = configureStore({
   reducer: {
     trendingMovies: trendingMoviesReducer,
@@ -16,6 +33,15 @@ export const store = configureStore({
     moviesGenres: moviesGenresReducer,
     movieCast: movieCastReducer,
     movieReviews: movieReviewsReducer,
-    auth: authReducer,
-  }
+    auth: persistReducer(persistConfig, authReducer),
+  },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 })
+
+export const persistor = persistStore(store)
