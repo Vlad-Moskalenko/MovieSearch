@@ -14,19 +14,29 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
     genres,
   } = movieDetails;
 
+  const handleClickBtn = movieDetails => {};
+
   return (
     <article className={css.movieMetaWrapper}>
-      {poster_path ? (
-        <img
-          className={css.moviePoster}
-          src={`https://image.tmdb.org/t/p/w500/${
-            poster_path || backdrop_path
-          }`}
-          alt={title || original_title}
-        />
-      ) : (
-        <NotFound className={css.moviePoster} />
-      )}
+      <div className={css.moviePosterWrapper}>
+        {poster_path ? (
+          <img
+            className={css.moviePoster}
+            src={`https://image.tmdb.org/t/p/w500/${
+              poster_path || backdrop_path
+            }`}
+            alt={title || original_title}
+          />
+        ) : (
+          <NotFound className={css.moviePoster} />
+        )}
+        <button
+          onClick={() => handleClickBtn(movieDetails)}
+          className={css.addLibraryBtn}
+        >
+          ADD TO LIBRARY
+        </button>
+      </div>
       <div>
         <ul className={css.movieMeta}>
           <li className={css.movieMetaItem}>

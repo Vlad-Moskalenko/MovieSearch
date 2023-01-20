@@ -6,6 +6,7 @@ import { movieDetailsReducer } from "./features/movieDetailsSlice";
 import { moviesGenresReducer } from "./features/moviesGenresSlice";
 import { movieCastReducer } from "./features/movieCastSlice";
 import { movieReviewsReducer } from "./features/movieReviewsSlice";
+import { authReducer } from "./features/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     movieDetails: movieDetailsReducer,
     moviesGenres: moviesGenresReducer,
     movieCast: movieCastReducer,
-    movieReviews: movieReviewsReducer
+    movieReviews: movieReviewsReducer,
+    auth: authReducer,
   }
 })

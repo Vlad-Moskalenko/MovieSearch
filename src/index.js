@@ -4,6 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux/es/exports';
 import { store } from 'redux/store';
 
+import './firebase'
+
 import { App } from 'components/App';
 import './index.css';
 

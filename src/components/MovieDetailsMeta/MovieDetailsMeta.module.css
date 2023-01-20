@@ -1,5 +1,6 @@
 .movieMetaWrapper{
   display: flex;
+  justify-content: space-between;
   gap: 40px;
 
   color: #fff;
@@ -25,12 +26,12 @@
 
 .moviePoster {
   position: relative;
-  width: 25vw;
   height: 65vh;
   object-fit: cover;
   object-position: center;
 
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .moviePoster::after {
@@ -48,6 +49,36 @@
   border: 6px solid #FF6B01;
   border-color: #FF6B01 transparent #FF6B01 transparent;
   animation: spinner 1.2s linear infinite;
+}
+
+.addLibraryBtn{
+  width: 100%;
+
+  padding: 5px 5px;
+
+  font-family: 'roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #fff;
+  background: #FF6B01;
+  text-shadow: 2px 2px 4px #000;
+
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  transition: color 250ms ease-in-out, text-shadow 250ms ease-in-out;
+}
+
+.addLibraryBtn:hover,
+.addLibraryBtn:focus {
+  color: #000;
+  text-shadow: 0px 0px 0px #000;
 }
 
 .movieTitle{
