@@ -1,16 +1,22 @@
-.navigationList{
+.header{
   min-height: 15vh;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.navigationList{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
 
   background-color: rgba(0,0,0);
 }
 
 .navigationItem a{
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
 
   color: #FFFFFF;
@@ -28,4 +34,31 @@
 .active {
   color: #FF6B01;
   border-bottom: 4px solid #FF001B;
+}
+
+.logBtn{
+  padding: 3px 12px;
+  align-self: center;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.17;
+
+  vertical-align: middle;
+
+  color: #fff;
+  background: #FF6B01;
+  border-radius: 5px;
+  border: none;
+
+  cursor: pointer;
+
+  text-shadow: 2px 2px 4px #000;
+
+  transition: color 0.3s ease-in-out, text-shadow 250ms ease-in-out;
+}
+
+.logBtn:hover,
+.logBtn:focus{
+  color: #000;
+  text-shadow: 0px 0px 0px #000;
 }

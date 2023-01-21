@@ -18,6 +18,7 @@ import { moviesGenresReducer } from "./features/moviesGenresSlice";
 import { movieCastReducer } from "./features/movieCastSlice";
 import { movieReviewsReducer } from "./features/movieReviewsSlice";
 import { authReducer } from "./features/authSlice";
+import { libraryReducer } from "./features/librarySlice";
 
 const persistConfig = {
   key: 'auth',
@@ -34,6 +35,7 @@ export const store = configureStore({
     movieCast: movieCastReducer,
     movieReviews: movieReviewsReducer,
     auth: persistReducer(persistConfig, authReducer),
+    library: libraryReducer
   },
 
   middleware: (getDefaultMiddleware) =>

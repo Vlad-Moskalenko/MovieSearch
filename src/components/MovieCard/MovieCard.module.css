@@ -16,6 +16,8 @@
 
   box-shadow: rgba(255, 107, 8, 0.2) 0px 22px 70px 4px;
 
+  color: #000;
+
   transition: transform 250ms ease-in-out, box-shadow 250ms ease-in-out;
   animation: blur 250ms ease-in-out;
 }

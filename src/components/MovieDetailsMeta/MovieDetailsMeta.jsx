@@ -1,9 +1,17 @@
 import css from './MovieDetailsMeta.module.css';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { NotFound } from 'components';
+import { addMovie, deleteMovie } from 'redux/operations';
+import { useEffect, useState } from 'react';
 
 export const MovieDetailsMeta = ({ movieDetails, children }) => {
+  const dispatch = useDispatch();
+  const movies = useSelector(state => state.library.movies);
+  const [isLibraryMovie, setIsLibraryMovie] = useState('');
+
   const {
+    id,
     title,
     original_title,
     poster_path,
@@ -14,7 +22,21 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
     genres,
   } = movieDetails;
 
-  const handleClickBtn = movieDetails => {};
+  useEffect(() => {
+    if (movies.find(movie => movie.id === id)) {
+      setIsLibraryMovie(true);
+    }
+  }, [id, movies]);
+
+  const handleClickBtn = movieDetails => {
+    if (!isLibraryMovie) {
+      dispatch(addMovie(movieDetails));
+      setIsLibraryMovie(true);
+    } else if (isLibraryMovie) {
+      dispatch(deleteMovie(movieDetails.id));
+      setIsLibraryMovie(false);
+    }
+  };
 
   return (
     <article className={css.movieMetaWrapper}>
@@ -31,10 +53,10 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
           <NotFound className={css.moviePoster} />
         )}
         <button
-          onClick={() => handleClickBtn(movieDetails)}
+          onClick={e => handleClickBtn(movieDetails)}
           className={css.addLibraryBtn}
         >
-          ADD TO LIBRARY
+          {isLibraryMovie ? 'REMOVE FROM LIBRARY' : 'ADD TO LIBRARY'}
         </button>
       </div>
       <div>

@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { NotFound } from 'components';
 
-export const MovieCard = ({ movieData, genres, link = '' }) => {
+export const MovieCard = ({ movieData, genres }) => {
   const location = useLocation();
 
   const {
@@ -19,13 +19,20 @@ export const MovieCard = ({ movieData, genres, link = '' }) => {
     id,
     vote_average,
     popularity,
+    genres: genresArr,
   } = movieData;
 
-  const genresString = getGenres(genres, genre_ids);
+  const genresString = genresArr
+    ? genresArr.map(genre => genre.name).join(', ')
+    : getGenres(genres, genre_ids);
 
   return (
     <li id={id}>
-      <Link className={css.movie} to={link + id} state={{ from: location }}>
+      <Link
+        className={css.movie}
+        to={`/movies/${id}`}
+        state={{ from: location }}
+      >
         <div className={css.movieWrapper}>
           {poster_path ? (
             <img

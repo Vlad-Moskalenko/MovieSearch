@@ -4,7 +4,7 @@ import { MovieCard } from 'components';
 
 export const MoviesList = ({ movies, link, genres }) => (
   <ul className={css.moviesList}>
-    {genres.length > 0 &&
+    {movies.length > 0 &&
       movies.map(movie => (
         <MovieCard
           key={movie.id}

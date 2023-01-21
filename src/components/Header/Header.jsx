@@ -13,7 +13,7 @@ export const Header = () => {
   };
 
   return (
-    <header>
+    <header className={css.header}>
       <nav>
         <ul className={css.navigationList}>
           <li className={css.navigationItem}>
@@ -40,22 +40,10 @@ export const Header = () => {
               Library
             </NavLink>
           </li>
-          {!isAuth && (
-            <li className={css.navigationItem}>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? css.active : undefined
-                }
-                to="/login"
-              >
-                Login
-              </NavLink>
-            </li>
-          )}
         </ul>
       </nav>
       {isAuth && (
-        <button type="button" onClick={handleLogOut}>
+        <button className={css.logBtn} type="button" onClick={handleLogOut}>
           Log out
         </button>
       )}

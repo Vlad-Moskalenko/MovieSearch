@@ -1,5 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { setDoc, deleteDoc, doc} from "firebase/firestore";
+import {db} from 'firebase.js'
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 axios.defaults.params = {
@@ -96,4 +98,21 @@ axios.defaults.params = {
     }
   })
 
-export {getMoviesGenres, getTrendingMovies, getSearchMovie, getMovieReviews, getMovieCast, getMovieDetails}
+  const addMovie = createAsyncThunk('library/addMovie', async (movieData, thunkApi) => {
+    try {
+      await setDoc(doc(db, "filmoteka", `${movieData.id}`), movieData);
+    } catch (e) {
+      thunkApi.rejectWithValue(e.message)
+    }
+  })
+
+  const deleteMovie = createAsyncThunk('library/deleteMovie', async (id, thunkApi) => {
+    try{
+      await deleteDoc(doc(db, "filmoteka", `${id}`));
+    }
+    catch(e){
+      thunkApi.rejectWithValue(e.message)
+    }
+  })
+
+export {getMoviesGenres, getTrendingMovies, getSearchMovie, getMovieReviews, getMovieCast, getMovieDetails, addMovie, deleteMovie}
