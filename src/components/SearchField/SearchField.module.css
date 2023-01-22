@@ -1,9 +1,5 @@
 .searchForm {
-  margin: 40px auto;
-  width: 394px;
-
   display: flex;
-  justify-content: center;
 
   border-bottom: 1px solid #FFFFFF;
 

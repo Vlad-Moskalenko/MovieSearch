@@ -1,85 +1,86 @@
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useEffect, useState } from 'react';
+// import { useSearchParams } from 'react-router-dom';
+// import { useSelector, useDispatch } from 'react-redux';
 
-import Notiflix from 'notiflix';
+// import Notiflix from 'notiflix';
 
-import {
-  MoviesList,
-  PagePagination,
-  SearchField,
-  NotFound,
-  Spinner,
-} from 'components';
-import { selectSearchMovies } from 'redux/selectors';
-import { getSearchMovie } from 'redux/operations';
-import { clearSearchMovies } from 'redux/features/searchMovieSlice';
+// import {
+//   MoviesList,
+//   PagePagination,
+//   SearchField,
+//   NotFound,
+//   Spinner,
+// } from 'components';
+// import { selectSearchMovies } from 'redux/selectors';
+// import { getSearchMovie } from 'redux/operations';
+// import { clearSearchMovies } from 'redux/features/searchMovieSlice';
 
-const Movies = ({ genres }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query') ?? '';
-  const page = Number(searchParams.get('page')) || 1;
+// const Movies = ({ genres }) => {
+//   const [searchParams, setSearchParams] = useSearchParams();
+//   const query = searchParams.get('query') ?? '';
+//   const page = Number(searchParams.get('page')) || 1;
 
-  const [queryInput, setQueryInput] = useState('');
+//   const [queryInput, setQueryInput] = useState('');
 
-  const { searchMovies, status, totalResults } =
-    useSelector(selectSearchMovies);
-  const dispatch = useDispatch();
+//   const { searchMovies, status, totalResults } =
+//     useSelector(selectSearchMovies);
 
-  useEffect(() => {
-    setQueryInput(query);
+//   const dispatch = useDispatch();
 
-    if (!query) {
-      dispatch(clearSearchMovies());
-    }
+//   useEffect(() => {
+//     setQueryInput(query);
 
-    if (query) {
-      dispatch(getSearchMovie({ query, page }));
-    }
-  }, [query, page, dispatch]);
+//     if (!query) {
+//       dispatch(clearSearchMovies());
+//     }
 
-  const handleFormSubmit = e => {
-    e.preventDefault();
+//     if (query) {
+//       dispatch(getSearchMovie({ query, page }));
+//     }
+//   }, [query, page, dispatch]);
 
-    const query = e.target.query.value.toLowerCase().trim();
+//   const handleFormSubmit = e => {
+//     e.preventDefault();
 
-    if (query === '') {
-      Notiflix.Notify.failure('Search field is empty!!!');
-      return;
-    }
+//     const query = e.target.query.value.toLowerCase().trim();
 
-    setSearchParams({ query: query, page: 1 });
-  };
+//     if (query === '') {
+//       Notiflix.Notify.failure('Search field is empty!!!');
+//       return;
+//     }
 
-  const setQueryString = page => setSearchParams({ query: query, ...page });
+//     setSearchParams({ query: query, page: 1 });
+//   };
 
-  return (
-    <main>
-      <SearchField
-        handleFormSubmit={handleFormSubmit}
-        setQueryInput={setQueryInput}
-        queryInput={queryInput}
-      />
-      {status !== 'error' && (
-        <>
-          <MoviesList movies={searchMovies} genres={genres} />
-          <PagePagination
-            totalResults={totalResults}
-            currentPage={page}
-            setPage={setQueryString}
-          />
-        </>
-      )}
+//   const setQueryString = page => setSearchParams({ query: query, ...page });
 
-      {status === 'loading' && <Spinner />}
+//   return (
+//     <main>
+//       <SearchField
+//         // handleFormSubmit={handleFormSubmit}
+//         setQueryInput={setQueryInput}
+//         queryInput={queryInput}
+//       />
+//       {status !== 'error' && (
+//         <>
+//           <MoviesList movies={searchMovies} genres={genres} />
+//           <PagePagination
+//             totalResults={totalResults}
+//             currentPage={page}
+//             setPage={setQueryString}
+//           />
+//         </>
+//       )}
 
-      {status === 'error' && (
-        <NotFound
-          title={`Oops! We couldn't find any movie with title - ${query}...`}
-        />
-      )}
-    </main>
-  );
-};
+//       {status === 'loading' && <Spinner />}
 
-export default Movies;
+//       {status === 'error' && (
+//         <NotFound
+//           title={`Oops! We couldn't find any movie with title - ${query}...`}
+//         />
+//       )}
+//     </main>
+//   );
+// };
+
+// export default Movies;

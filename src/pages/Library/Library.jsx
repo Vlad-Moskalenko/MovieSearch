@@ -4,9 +4,6 @@ import { Navigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from 'redux/features/authSlice';
 import { MoviesList } from 'components';
-import { db } from 'firebase.js';
-import { onSnapshot, collection } from 'firebase/firestore';
-import { getLibraryMovies } from 'redux/features/librarySlice';
 
 const Library = ({ genres }) => {
   const isAuth = useSelector(state => state.auth.isAuth);
@@ -31,18 +28,6 @@ const Library = ({ genres }) => {
       });
     }
   }, [dispatch, email, password]);
-
-  useEffect(
-    () =>
-      onSnapshot(collection(db, 'filmoteka'), snapshot => {
-        let data = [];
-        snapshot.docs.forEach(doc => {
-          data.push(doc.data());
-        });
-        dispatch(getLibraryMovies(data));
-      }),
-    [dispatch]
-  );
 
   return isAuth ? (
     <main>

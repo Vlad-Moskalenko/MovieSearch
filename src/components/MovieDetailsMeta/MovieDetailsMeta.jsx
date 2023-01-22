@@ -1,5 +1,6 @@
 import css from './MovieDetailsMeta.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { NotFound } from 'components';
 import { addMovie, deleteMovie } from 'redux/operations';
@@ -8,7 +9,9 @@ import { useEffect, useState } from 'react';
 export const MovieDetailsMeta = ({ movieDetails, children }) => {
   const dispatch = useDispatch();
   const movies = useSelector(state => state.library.movies);
+  const isAuth = useSelector(state => state.auth.isAuth);
   const [isLibraryMovie, setIsLibraryMovie] = useState('');
+  const navigate = useNavigate();
 
   const {
     id,
@@ -29,6 +32,9 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
   }, [id, movies]);
 
   const handleClickBtn = movieDetails => {
+    if (!isAuth) {
+      return navigate('/login');
+    }
     if (!isLibraryMovie) {
       dispatch(addMovie(movieDetails));
       setIsLibraryMovie(true);

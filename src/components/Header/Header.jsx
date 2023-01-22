@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import css from './Header.module.css';
 import { removeUser } from 'redux/features/authSlice';
+import { SearchField } from 'components';
 
 export const Header = () => {
   const dispatch = useDispatch();
@@ -24,14 +25,14 @@ export const Header = () => {
               Home
             </NavLink>
           </li>
-          <li className={css.navigationItem}>
+          {/* <li className={css.navigationItem}>
             <NavLink
               className={({ isActive }) => (isActive ? css.active : undefined)}
               to="/movies"
             >
               Movies
             </NavLink>
-          </li>
+          </li> */}
           <li className={css.navigationItem}>
             <NavLink
               className={({ isActive }) => (isActive ? css.active : undefined)}
@@ -42,6 +43,7 @@ export const Header = () => {
           </li>
         </ul>
       </nav>
+      <SearchField />
       {isAuth && (
         <button className={css.logBtn} type="button" onClick={handleLogOut}>
           Log out
