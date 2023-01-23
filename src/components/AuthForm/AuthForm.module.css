@@ -1,7 +1,28 @@
+.backdrop{
+  position: fixed;
+  top: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(255,255,255, 0.2);
+}
+
 .modalWindow{
-  padding: 15px;
-  width: 320px;
+  padding: 20px;
   margin: 0 auto;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border-radius: 5px;
+
+  background-color: #000;
 }
 
 .authForm{
@@ -10,8 +31,47 @@
   gap: 20px;
 }
 
+.modalWindow p{
+  text-align: center;
+  font-size: 18px;
+}
+
+.modalWindow p button{
+  color:#FF6B01;
+  background-color: transparent;
+
+}
+
 .authField {
   display: flex;
   flex-direction: column;
-  gap: 5px
+  gap: 5px;
+}
+
+.submitBtn{
+  width: 100%;
+
+  padding: 5px 5px;
+
+  font-family: 'roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+
+  color: #fff;
+  background: #FF6B01;
+  text-shadow: 2px 2px 4px #000;
+
+  border-radius: 5px;
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  transition: color 250ms ease-in-out, text-shadow 250ms ease-in-out;
+}
+
+.submitBtn:hover,
+.submitBtn:focus {
+  color: #000;
+  text-shadow: 0px 0px 0px #000;
 }

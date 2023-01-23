@@ -58,3 +58,14 @@ main{
   position: relative;
   flex-grow:1;
 }
+
+input{
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button{
+  cursor:pointer;
+  font-family: inherit;
+  font-size: inherit;
+}

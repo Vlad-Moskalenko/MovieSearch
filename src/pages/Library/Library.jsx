@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { setUser } from 'redux/features/authSlice';
+import { toggleModal } from 'redux/features/authSlice';
 import { MoviesList } from 'components';
 
 const Library = ({ genres }) => {
@@ -27,14 +27,18 @@ const Library = ({ genres }) => {
         );
       });
     }
-  }, [dispatch, email, password]);
 
-  return isAuth ? (
-    <main>
-      <MoviesList movies={movies} genres={genres} />
-    </main>
-  ) : (
-    <Navigate to="/login" />
+    if (!isAuth) {
+      dispatch(toggleModal(true));
+    }
+  }, [dispatch, email, password, isAuth]);
+
+  return (
+    isAuth && (
+      <main>
+        <MoviesList movies={movies} genres={genres} />
+      </main>
+    )
   );
 };
 
