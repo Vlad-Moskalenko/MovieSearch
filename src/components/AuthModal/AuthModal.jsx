@@ -1,13 +1,15 @@
 import {
-  getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { useState } from 'react';
 
 import { setUser } from 'redux/features/authSlice';
+import { auth } from 'firebase.js';
 
 import { AuthForm } from 'components';
 
@@ -18,8 +20,6 @@ export const AuthModal = () => {
   const [register, setRegister] = useState(false);
 
   const handleSubmit = ({ email, password }) => {
-    const auth = getAuth();
-
     if (register) {
       createUserWithEmailAndPassword(auth, email, password)
         .then(({ user }) => {
@@ -56,6 +56,24 @@ export const AuthModal = () => {
     }
   };
 
+  const handleGoogleAuth = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then(({ user }) => {
+        dispatch(
+          setUser({
+            isAuth: true,
+            email: user.email,
+            id: user.uid,
+            token: user.accessToken,
+          })
+        );
+      })
+      .catch(error => {
+        console.log(error.message);
+      });
+  };
+
   return createPortal(
     <>
       {register ? (
@@ -69,6 +87,9 @@ export const AuthModal = () => {
         </AuthForm>
       ) : (
         <AuthForm title="Login" handleSubmit={handleSubmit}>
+          <button onClick={handleGoogleAuth} type="button">
+            Continue with Google
+          </button>
           <p>
             Don`t have an account?
             <button onClick={() => setRegister(true)} type="button">

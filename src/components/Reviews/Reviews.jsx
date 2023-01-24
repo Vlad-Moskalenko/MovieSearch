@@ -22,21 +22,26 @@ const Reviews = () => {
 
   return (
     <div className={css.reviewsWrapper}>
-      {status === 'success' && reviews.length > 0 && (
-        <ul className={css.reviewsList}>
-          {reviews.map(({ id, author, content, created_at }) => (
-            <li key={id}>
-              <p className={css.reviewsMeta}>
-                {author}{' '}
-                <span>{new Date(created_at).toLocaleDateString()}</span>
-              </p>
-              <p>{content}</p>
-            </li>
-          ))}
-        </ul>
-      )}
-      {(status === 'error' || reviews.length === 0) && (
-        <div className={css.empty}>No reviews...</div>
+      {status === 'success' &&
+        (reviews.length > 0 ? (
+          <ul className={css.reviewsList}>
+            {reviews.map(({ id, author, content, created_at }) => (
+              <li key={id}>
+                <p className={css.reviewsMeta}>
+                  {author}{' '}
+                  <span>{new Date(created_at).toLocaleDateString()}</span>
+                </p>
+                <p>{content}</p>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className={css.empty}>No reviews...</div>
+        ))}
+      {status === 'error' && (
+        <div className={css.empty}>
+          Haven't any information about reviews...
+        </div>
       )}
       {status === 'loading' && <Spinner size="80" />}
     </div>

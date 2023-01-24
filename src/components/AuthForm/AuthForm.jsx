@@ -44,6 +44,7 @@ export const AuthForm = ({ title, handleSubmit, children }) => {
               name="email"
               onChange={handleChange}
               value={userData.email}
+              required
             />
           </label>
           <label className={css.authField}>
@@ -53,6 +54,7 @@ export const AuthForm = ({ title, handleSubmit, children }) => {
               name="password"
               onChange={handleChange}
               value={userData.password}
+              required
             />
           </label>
           <button className={css.submitBtn} type="submit">

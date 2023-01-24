@@ -58,7 +58,7 @@ axios.defaults.params = {
     try{
       const {data, request} = await axios.get(`/movie/${movieId}/credits?`)
 
-      if(request.status !== 200 || data.total_results === 0){
+      if(request.status !== 200){
         throw new Error(request.status)
       }
 
@@ -73,7 +73,7 @@ axios.defaults.params = {
     try{
       const {data, request} = await axios.get(`/movie/${movieId}/reviews?`)
 
-      if(request.status !== 200 || data.total_results === 0){
+      if(request.status !== 200){
         throw new Error(request.status)
       }
 
@@ -87,7 +87,7 @@ axios.defaults.params = {
   const getMoviesGenres = createAsyncThunk('moviesGenres/getMoviesGenres', async (_, thunkApi)=>{
     try{
       const {data, request} = await axios.get('/genre/movie/list?')
-      if(request.status !== 200 || data.total_results === 0){
+      if(request.status !== 200){
         throw new Error(request.status)
       }
 

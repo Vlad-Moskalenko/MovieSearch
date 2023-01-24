@@ -36,7 +36,11 @@ const Library = ({ genres }) => {
   return (
     isAuth && (
       <main>
-        <MoviesList movies={movies} genres={genres} />
+        {movies.length > 0 ? (
+          <MoviesList movies={movies} genres={genres} />
+        ) : (
+          <p>You don't have any movies yet...</p>
+        )}
       </main>
     )
   );
