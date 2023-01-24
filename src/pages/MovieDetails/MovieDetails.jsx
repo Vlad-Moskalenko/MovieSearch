@@ -24,9 +24,7 @@ const MovieDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (movieId) {
-      dispatch(getMovieDetails(movieId));
-    }
+    dispatch(getMovieDetails(movieId));
   }, [movieId, dispatch]);
 
   return (

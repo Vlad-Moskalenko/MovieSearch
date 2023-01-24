@@ -7,7 +7,6 @@ import { getLibraryMovies } from 'redux/features/librarySlice';
 
 import { AuthModal, SharedLayout } from 'components';
 import { getMoviesGenres } from 'redux/operations';
-import { selectMoviesGenres } from 'redux/selectors';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
@@ -16,16 +15,21 @@ const Reviews = lazy(() => import('./Reviews/Reviews'));
 const Library = lazy(() => import('pages/Library/Library'));
 
 export const App = () => {
-  const { genres } = useSelector(selectMoviesGenres);
+  const genres = useSelector(state => state.moviesGenres.genres);
   const isAuth = useSelector(state => state.auth.isAuth);
+  const userId = useSelector(state => state.auth.user.id);
   const isModal = useSelector(state => state.auth.isModal);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMoviesGenres());
+    if (!genres) {
+      dispatch(getMoviesGenres());
+    }
+  }, [dispatch, genres]);
 
+  useEffect(() => {
     if (isAuth) {
-      onSnapshot(collection(db, 'filmoteka'), snapshot => {
+      onSnapshot(collection(db, `${userId}`), snapshot => {
         let data = [];
         snapshot.docs.forEach(doc => {
           data.push(doc.data());
@@ -33,7 +37,7 @@ export const App = () => {
         dispatch(getLibraryMovies(data));
       });
     }
-  }, [dispatch, isAuth]);
+  }, [dispatch, isAuth, userId]);
 
   return (
     <>

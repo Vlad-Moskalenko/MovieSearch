@@ -6,7 +6,7 @@ import { toggleModal } from 'redux/features/authSlice';
 import css from './AuthForm.module.css';
 
 export const AuthForm = ({ title, handleSubmit, children }) => {
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({ email: '', password: '' });
   const dispatch = useDispatch();
 
   useEffect(() => {

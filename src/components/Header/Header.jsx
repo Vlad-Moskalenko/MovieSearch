@@ -4,18 +4,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import css from './Header.module.css';
 import { removeUser, toggleModal } from 'redux/features/authSlice';
 import { clearLibraryMovies } from 'redux/features/librarySlice';
+import { useLocation } from 'react-router-dom';
 
 import { SearchField } from 'components';
 
 export const Header = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(state => state.auth.isAuth);
+  const location = useLocation();
 
   const handleClickLogBtn = () => {
     if (isAuth) {
       dispatch(removeUser());
       dispatch(clearLibraryMovies());
+      return;
     }
+
     dispatch(toggleModal(true));
   };
 
@@ -41,7 +45,7 @@ export const Header = () => {
           </li>
         </ul>
       </nav>
-      <SearchField />
+      {location.pathname === '/' && <SearchField />}
       <button className={css.logBtn} type="button" onClick={handleClickLogBtn}>
         {isAuth ? 'Logout' : 'Login'}
       </button>

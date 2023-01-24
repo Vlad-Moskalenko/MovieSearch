@@ -8,7 +8,7 @@ const moviesGenresSlice = createSlice({
   name: "moviesGenres",
 
   initialState: {
-    genres: [],
+    genres: null,
     status: null,
   },
 

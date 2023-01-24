@@ -98,17 +98,17 @@ axios.defaults.params = {
     }
   })
 
-  const addMovie = createAsyncThunk('library/addMovie', async (movieData, thunkApi) => {
+  const addMovie = createAsyncThunk('library/addMovie', async ({userId, movieData}, thunkApi) => {
     try {
-      await setDoc(doc(db, "filmoteka", `${movieData.id}`), movieData);
+      await setDoc(doc(db, `${userId}`, `${movieData.id}`), movieData);
     } catch (e) {
       thunkApi.rejectWithValue(e.message)
     }
   })
 
-  const deleteMovie = createAsyncThunk('library/deleteMovie', async (id, thunkApi) => {
+  const deleteMovie = createAsyncThunk('library/deleteMovie', async ({userId, movieId}, thunkApi) => {
     try{
-      await deleteDoc(doc(db, "filmoteka", `${id}`));
+      await deleteDoc(doc(db, `${userId}`, `${movieId}`));
     }
     catch(e){
       thunkApi.rejectWithValue(e.message)

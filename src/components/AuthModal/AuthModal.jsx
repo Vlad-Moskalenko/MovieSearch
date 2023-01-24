@@ -31,6 +31,7 @@ export const AuthModal = () => {
               token: user.accessToken,
             })
           );
+          return user;
         })
         .catch(error => {
           console.log(error);

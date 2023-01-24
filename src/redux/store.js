@@ -29,7 +29,6 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     trendingMovies: trendingMoviesReducer,
-    // searchMovie: searchMovieReducer,
     movieDetails: movieDetailsReducer,
     moviesGenres: moviesGenresReducer,
     movieCast: movieCastReducer,

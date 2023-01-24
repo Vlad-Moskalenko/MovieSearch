@@ -10,6 +10,7 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
   const dispatch = useDispatch();
   const movies = useSelector(state => state.library.movies);
   const isAuth = useSelector(state => state.auth.isAuth);
+  const userId = useSelector(state => state.auth.user.id);
   const [isLibraryMovie, setIsLibraryMovie] = useState('');
 
   const {
@@ -36,10 +37,10 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
       return;
     }
     if (!isLibraryMovie) {
-      dispatch(addMovie(movieDetails));
+      dispatch(addMovie({ userId: userId, movieData: movieDetails }));
       setIsLibraryMovie(true);
     } else if (isLibraryMovie) {
-      dispatch(deleteMovie(movieDetails.id));
+      dispatch(deleteMovie({ userId: userId, movieId: movieDetails.id }));
       setIsLibraryMovie(false);
     }
   };
@@ -54,6 +55,7 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
               poster_path || backdrop_path
             }`}
             alt={title || original_title}
+            height="65vh"
           />
         ) : (
           <NotFound className={css.moviePoster} />
