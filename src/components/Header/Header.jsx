@@ -2,8 +2,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import css from './Header.module.css';
-import { removeUser, toggleModal } from 'redux/features/authSlice';
-import { clearLibraryMovies } from 'redux/features/librarySlice';
+import { removeUser, toggleModal } from 'redux/auth/authSlice';
+import { clearLibraryMovies } from 'redux/library/librarySlice';
 import { useLocation } from 'react-router-dom';
 
 import { SearchField } from 'components';

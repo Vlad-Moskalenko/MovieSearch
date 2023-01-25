@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectMovieDetails } from 'redux/selectors';
-import { getMovieDetails } from 'redux/operations';
+import { getMovieDetails } from 'redux/movieDetails/operations';
 
 import {
   MovieDetailsMeta,
@@ -20,7 +19,7 @@ const MovieDetails = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
-  const { movieDetails, status } = useSelector(selectMovieDetails);
+  const status = useSelector(state => state.movieDetails.status);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,7 +31,7 @@ const MovieDetails = () => {
       {status === 'success' && (
         <>
           <BackLink location={backLinkHref} />
-          <MovieDetailsMeta movieDetails={movieDetails}>
+          <MovieDetailsMeta>
             <AdditionalInfo location={backLinkHref} />
           </MovieDetailsMeta>
         </>

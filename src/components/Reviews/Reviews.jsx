@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { getMovieReviews } from 'redux/operations';
-import { selectMovieReviews } from 'redux/selectors';
+import { getMovieReviews } from 'redux/movieDetails/operations';
 
 import css from './Reviews.module.css';
 
@@ -11,7 +10,9 @@ import { Spinner } from 'components';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const { reviews, status } = useSelector(selectMovieReviews);
+  const { reviewsList, status } = useSelector(
+    state => state.movieDetails.reviews
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,9 +24,9 @@ const Reviews = () => {
   return (
     <div className={css.reviewsWrapper}>
       {status === 'success' &&
-        (reviews.length > 0 ? (
+        (reviewsList.length > 0 ? (
           <ul className={css.reviewsList}>
-            {reviews.map(({ id, author, content, created_at }) => (
+            {reviewsList.map(({ id, author, content, created_at }) => (
               <li key={id}>
                 <p className={css.reviewsMeta}>
                   {author}{' '}
@@ -38,11 +39,13 @@ const Reviews = () => {
         ) : (
           <div className={css.empty}>No reviews...</div>
         ))}
+
       {status === 'error' && (
         <div className={css.empty}>
           Haven't any information about reviews...
         </div>
       )}
+
       {status === 'loading' && <Spinner size="80" />}
     </div>
   );

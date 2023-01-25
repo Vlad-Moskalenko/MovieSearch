@@ -2,30 +2,26 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { getTrendingMovies } from 'redux/movies/operations';
+import { getSearchMovie } from 'redux/movies/operations';
+
 import { MoviesList, NotFound, PagePagination, Spinner } from 'components';
-import { selectTrendingMovies } from 'redux/selectors';
-import { getTrendingMovies } from 'redux/operations';
 
-import { getSearchMovie } from 'redux/operations';
-
-const Home = ({ genres }) => {
+const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
   const page = Number(searchParams.get('page')) || 1;
 
-  const { trendingMovies, status, totalResults } =
-    useSelector(selectTrendingMovies);
-
   const dispatch = useDispatch();
+  const { movies, status, totalResults } = useSelector(state => state.movies);
 
   useEffect(() => {
     if (!query) {
       dispatch(getTrendingMovies(page));
+      return;
     }
 
-    if (query) {
-      dispatch(getSearchMovie({ query, page }));
-    }
+    dispatch(getSearchMovie({ query, page }));
   }, [query, page, dispatch]);
 
   const setQueryString = page => setSearchParams({ query: query, ...page });
@@ -34,7 +30,7 @@ const Home = ({ genres }) => {
     <main>
       {status !== 'error' && (
         <>
-          <MoviesList genres={genres} movies={trendingMovies} link="movies/" />
+          <MoviesList movies={movies} />
           <PagePagination
             totalResults={totalResults}
             currentPage={page}

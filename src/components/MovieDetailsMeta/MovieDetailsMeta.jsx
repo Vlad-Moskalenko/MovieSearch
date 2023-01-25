@@ -2,15 +2,16 @@ import css from './MovieDetailsMeta.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { NotFound } from 'components';
-import { addMovie, deleteMovie } from 'redux/operations';
-import { toggleModal } from 'redux/features/authSlice';
+import { addMovie, deleteMovie } from 'redux/library/operations';
+import { toggleModal } from 'redux/auth/authSlice';
 import { useEffect, useState } from 'react';
 
-export const MovieDetailsMeta = ({ movieDetails, children }) => {
+export const MovieDetailsMeta = ({ children }) => {
   const dispatch = useDispatch();
-  const movies = useSelector(state => state.library.movies);
+  const { libraryMovies, status } = useSelector(state => state.library);
   const isAuth = useSelector(state => state.auth.isAuth);
   const userId = useSelector(state => state.auth.user.id);
+  const movieDetails = useSelector(state => state.movieDetails.movieDetails);
   const [isLibraryMovie, setIsLibraryMovie] = useState('');
 
   const {
@@ -26,10 +27,10 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
   } = movieDetails;
 
   useEffect(() => {
-    if (movies.find(movie => movie.id === id)) {
+    if (libraryMovies.find(movie => movie.id === id)) {
       setIsLibraryMovie(true);
     }
-  }, [id, movies]);
+  }, [id, libraryMovies]);
 
   const handleClickBtn = movieDetails => {
     if (!isAuth) {
@@ -63,6 +64,7 @@ export const MovieDetailsMeta = ({ movieDetails, children }) => {
         <button
           onClick={e => handleClickBtn(movieDetails)}
           className={css.addLibraryBtn}
+          disabled={status === 'loading' ? true : false}
         >
           {isLibraryMovie ? 'REMOVE FROM LIBRARY' : 'ADD TO LIBRARY'}
         </button>

@@ -1,12 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
-import { useEffect, lazy } from 'react';
+import { useEffect, lazy, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { db } from 'firebase.js';
-import { onSnapshot, collection } from 'firebase/firestore';
-import { getLibraryMovies } from 'redux/features/librarySlice';
+
+import { getMoviesGenres } from 'redux/movies/operations';
+import { getSavedMovies } from 'redux/library/operations';
 
 import { AuthModal, SharedLayout } from 'components';
-import { getMoviesGenres } from 'redux/operations';
+import { setLibraryMovies } from 'redux/library/librarySlice';
 
 const Home = lazy(() => import('pages/Home/Home'));
 const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
@@ -15,42 +15,41 @@ const Reviews = lazy(() => import('./Reviews/Reviews'));
 const Library = lazy(() => import('pages/Library/Library'));
 
 export const App = () => {
-  const genres = useSelector(state => state.moviesGenres.genres);
+  const genres = useSelector(state => state.movies.genres);
   const isAuth = useSelector(state => state.auth.isAuth);
   const userId = useSelector(state => state.auth.user.id);
   const isModal = useSelector(state => state.auth.isModal);
+  const [savedMovies, setSavedMovies] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!genres) {
+    if (genres.length === 0) {
       dispatch(getMoviesGenres());
     }
   }, [dispatch, genres]);
 
   useEffect(() => {
     if (isAuth) {
-      onSnapshot(collection(db, `${userId}`), snapshot => {
-        let data = [];
-        snapshot.docs.forEach(doc => {
-          data.push(doc.data());
-        });
-        dispatch(getLibraryMovies(data));
-      });
+      dispatch(getSavedMovies({ userId: userId, setSavedMovies }));
     }
   }, [dispatch, isAuth, userId]);
+
+  useEffect(() => {
+    dispatch(setLibraryMovies(savedMovies));
+  }, [savedMovies, dispatch]);
 
   return (
     <>
       {isModal && <AuthModal />}
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home genres={genres} />} />
+          <Route index element={<Home />} />
           <Route path="/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
-          <Route path="/library" element={<Library genres={genres} />} />
-          <Route path="*" element={<Home genres={genres} />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="*" element={<Home />} />
         </Route>
       </Routes>
     </>

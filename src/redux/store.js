@@ -11,14 +11,10 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
-import { trendingMoviesReducer } from "./features/trendingMoviesSlice";
-// import { searchMovieReducer } from "./features/searchMovieSlice";
-import { movieDetailsReducer } from "./features/movieDetailsSlice";
-import { moviesGenresReducer } from "./features/moviesGenresSlice";
-import { movieCastReducer } from "./features/movieCastSlice";
-import { movieReviewsReducer } from "./features/movieReviewsSlice";
-import { authReducer } from "./features/authSlice";
-import { libraryReducer } from "./features/librarySlice";
+import { moviesReducer } from "./movies/moviesSlice";
+import { movieDetailsReducer } from "./movieDetails/movieDetailsSlice";
+import { authReducer } from "./auth/authSlice";
+import { libraryReducer } from "./library/librarySlice";
 
 const persistConfig = {
   key: 'auth',
@@ -28,11 +24,8 @@ const persistConfig = {
 
 export const store = configureStore({
   reducer: {
-    trendingMovies: trendingMoviesReducer,
+    movies: moviesReducer,
     movieDetails: movieDetailsReducer,
-    moviesGenres: moviesGenresReducer,
-    movieCast: movieCastReducer,
-    movieReviews: movieReviewsReducer,
     auth: persistReducer(persistConfig, authReducer),
     library: libraryReducer
   },

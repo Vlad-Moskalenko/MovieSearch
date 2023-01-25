@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { toggleModal } from 'redux/features/authSlice';
+import { toggleModal } from 'redux/auth/authSlice';
 
 import css from './AuthForm.module.css';
 
 export const AuthForm = ({ title, handleSubmit, children }) => {
   const [userData, setUserData] = useState({ email: '', password: '' });
   const dispatch = useDispatch();
+  const status = useSelector(state => state.auth.status);
 
   useEffect(() => {
     window.addEventListener('keydown', closeModal);
@@ -57,7 +58,11 @@ export const AuthForm = ({ title, handleSubmit, children }) => {
               required
             />
           </label>
-          <button className={css.submitBtn} type="submit">
+          <button
+            className={css.submitBtn}
+            type="submit"
+            disabled={status === 'loading' ? true : false}
+          >
             {title}
           </button>
         </form>

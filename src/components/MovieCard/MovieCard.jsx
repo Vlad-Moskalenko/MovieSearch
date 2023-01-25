@@ -1,13 +1,14 @@
+import { Link, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import css from './MovieCard.module.css';
 
-import { getGenres } from 'services/getGenres';
-
-import { Link, useLocation } from 'react-router-dom';
-
 import { NotFound } from 'components';
+import { selectGenresObj } from 'redux/movies/selectors';
 
-export const MovieCard = ({ movieData, genres }) => {
+export const MovieCard = ({ movieData }) => {
   const location = useLocation();
+  const genresObj = useSelector(selectGenresObj);
 
   const {
     poster_path,
@@ -19,12 +20,12 @@ export const MovieCard = ({ movieData, genres }) => {
     id,
     vote_average,
     popularity,
-    genres: genresArr,
+    genres,
   } = movieData;
 
-  const genresString = genresArr
-    ? genresArr.map(genre => genre.name).join(', ')
-    : getGenres(genres, genre_ids);
+  const genresString = genres
+    ? genres.map(genre => genre.name).join(', ')
+    : genre_ids.map(id => genresObj[id]).join(', ');
 
   return (
     <li id={id}>
