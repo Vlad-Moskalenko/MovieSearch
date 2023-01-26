@@ -10,6 +10,7 @@ import {
   BackLink,
   NotFound,
   Spinner,
+  TrailerMovieModal,
 } from 'components';
 
 import css from './MovieDetails.module.css';
@@ -40,6 +41,8 @@ const MovieDetails = () => {
       {status === 'error' && <NotFound title="Oops, something went wrong..." />}
 
       {status === 'loading' && <Spinner />}
+
+      <TrailerMovieModal />
     </main>
   );
 };

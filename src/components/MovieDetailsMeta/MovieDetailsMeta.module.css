@@ -1,6 +1,7 @@
 .movieMetaWrapper{
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 40px;
 
   color: #fff;
@@ -102,6 +103,31 @@
   color: #fff;
   background-color: #FF6B01;
   border-radius: 5px;
+}
+
+.playTrailerBtn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+
+  border: none;
+  outline: none;
+
+  color: #FF6B01;
+  background-color: transparent;
+
+  transition: color 250ms ease-in-out;
+}
+
+.playTrailerBtn:hover,
+.playTrailerBtn:focus{
+  color: #fff
+}
+
+.moviePosterWrapper{
+  position: relative;
 }
 
 @keyframes spinner {

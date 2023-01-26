@@ -1,10 +1,13 @@
 import css from './MovieDetailsMeta.module.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+
+import { BsPlayCircle } from 'react-icons/bs';
 
 import { NotFound } from 'components';
 import { addMovie, deleteMovie } from 'redux/library/operations';
 import { toggleModal } from 'redux/auth/authSlice';
-import { useEffect, useState } from 'react';
+import { getMovieTrailer } from 'redux/movieDetails/operations';
 
 export const MovieDetailsMeta = ({ children }) => {
   const dispatch = useDispatch();
@@ -46,9 +49,20 @@ export const MovieDetailsMeta = ({ children }) => {
     }
   };
 
+  const handleClickPlayBtn = () => {
+    dispatch(getMovieTrailer(id));
+  };
+
   return (
     <article className={css.movieMetaWrapper}>
       <div className={css.moviePosterWrapper}>
+        <button
+          onClick={handleClickPlayBtn}
+          className={css.playTrailerBtn}
+          type="button"
+        >
+          <BsPlayCircle size="100" />
+        </button>
         {poster_path ? (
           <img
             className={css.moviePoster}

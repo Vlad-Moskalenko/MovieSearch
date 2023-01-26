@@ -18,7 +18,8 @@ export const AuthForm = ({ title, handleSubmit, children }) => {
     return () => {
       window.removeEventListener('keydown', closeModal);
     };
-  });
+    //eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     if (status === 'error' && errorMessage) {

@@ -47,4 +47,19 @@ const getMovieReviews = createAsyncThunk('movieDetails/getMovieReviews', async (
   }
 })
 
-export { getMovieReviews, getMovieCast, getMovieDetails}
+const getMovieTrailer = createAsyncThunk('movieDetails/getMovieTrailer', async (movieId, thunkApi) => {
+  try{
+    const {data, request} = await axios.get(`/movie/${movieId}/videos?`)
+
+    if(request.status !== 200){
+      throw new Error(request.status)
+    }
+
+    return data
+  }
+  catch(e){
+    return thunkApi.rejectWithValue(e.message)
+  }
+})
+
+export { getMovieReviews, getMovieCast, getMovieDetails, getMovieTrailer}
