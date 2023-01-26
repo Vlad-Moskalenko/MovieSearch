@@ -9,6 +9,7 @@ const librarySlice = createSlice({
   initialState: {
     libraryMovies: [],
     status: null,
+    filter: '',
   },
 
   reducers: {
@@ -20,6 +21,10 @@ const librarySlice = createSlice({
     clearLibraryMovies(state){
       state.libraryMovies = []
       state.status = null
+    },
+
+    filterMovies(state, {payload}){
+      state.filter = payload
     }
   },
 
@@ -40,4 +45,4 @@ const librarySlice = createSlice({
 })
 
 export const libraryReducer = librarySlice.reducer
-export const {setLibraryMovies, clearLibraryMovies} = librarySlice.actions
+export const {setLibraryMovies, clearLibraryMovies, filterMovies} = librarySlice.actions

@@ -45,7 +45,9 @@ export const Header = () => {
           </li>
         </ul>
       </nav>
-      {location.pathname === '/' && <SearchField />}
+      {(location.pathname === '/' || location.pathname === '/library') && (
+        <SearchField />
+      )}
       <button className={css.logBtn} type="button" onClick={handleClickLogBtn}>
         {isAuth ? 'Logout' : 'Login'}
       </button>

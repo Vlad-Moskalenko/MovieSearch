@@ -17,7 +17,6 @@
   font-size: 24px;
   font-weight: 700;
 
-  color: #FFFFFF;
   text-decoration: none;
 
   transition: color 250ms ease-in-out, border-bottom 250ms ease-in-out;
@@ -36,8 +35,7 @@
 
 .logBtn{
   padding: 3px 12px;
-  align-self: center;
-  font-size: 20px;
+
   font-weight: 500;
   line-height: 1.17;
   margin-left: 10px;

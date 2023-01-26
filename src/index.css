@@ -39,6 +39,8 @@ ul {
 a {
   color: inherit;
   text-decoration: none;
+
+  transition: all 250ms ease-in-out;
 }
 
 img {

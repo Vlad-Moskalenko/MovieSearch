@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { toggleModal } from 'redux/auth/authSlice';
 import { MoviesList, Spinner, NotFound } from 'components';
+import { selectFilteredMovies } from 'redux/library/selectors';
 
 const Library = () => {
   const isAuth = useSelector(state => state.auth.isAuth);
   const isModal = useSelector(state => state.auth.isModal);
-  const { libraryMovies, status } = useSelector(state => state.library);
+  const status = useSelector(state => state.library.status);
+  const libraryMovies = useSelector(selectFilteredMovies);
 
   const dispatch = useDispatch();
 
