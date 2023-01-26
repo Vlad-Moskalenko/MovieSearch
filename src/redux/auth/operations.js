@@ -14,7 +14,7 @@ const logIn = createAsyncThunk('auth/logIn', async ({email, password}, thunkApi)
     return {id: user.uid, email: user.email, token: user.accessToken}
   }
   catch(e){
-    thunkApi.rejectWithValue(e.message)
+    return thunkApi.rejectWithValue(e.message)
   }
 })
 
@@ -24,7 +24,7 @@ const register = createAsyncThunk('auth/register', async ({email, password}, thu
     return {id: user.uid, email: user.email, token: user.accessToken}
   }
   catch(e){
-    thunkApi.rejectWithValue(e.message)
+    return thunkApi.rejectWithValue(e.message)
   }
 });
 
@@ -34,7 +34,7 @@ const googleAuth = createAsyncThunk('auth/googleAuth', async (_, thunkApi) => {
     return {id: user.uid, email: user.email, token: user.accessToken}
   }
   catch(e){
-    thunkApi.rejectWithValue(e.message)
+    return thunkApi.rejectWithValue(e.message)
   }
 })
 

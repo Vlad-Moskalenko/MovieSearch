@@ -7,7 +7,7 @@ const addMovie = createAsyncThunk('library/addMovie', async ({userId, movieData}
   try {
     await setDoc(doc(db, `${userId}`, `${movieData.id}`), {...movieData, createdAt: serverTimestamp()});
   } catch (e) {
-    thunkApi.rejectWithValue(e.message)
+    return thunkApi.rejectWithValue(e.message)
   }
 })
 
@@ -16,7 +16,7 @@ const deleteMovie = createAsyncThunk('library/deleteMovie', async ({userId, movi
     await deleteDoc(doc(db, `${userId}`, `${movieId}`));
   }
   catch(e){
-    thunkApi.rejectWithValue(e.message)
+    return thunkApi.rejectWithValue(e.message)
   }
 })
 
@@ -36,7 +36,7 @@ const getSavedMovies = createAsyncThunk('library/getSavedMovies', async ({userId
     console.log(db.snapshot(collection(db, `${userId}`)))
   }
   catch(e){
-    thunkApi.rejectWithValue(e.message)
+    return thunkApi.rejectWithValue(e.message)
   }
 })
 

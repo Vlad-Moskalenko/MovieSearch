@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { logIn, register, googleAuth } from "./operations";
-import { handleError, handlePending } from "services/handleFetch";
+import { handlePending } from "services/handleFetch";
 
 const handleFulfilled = (state, {payload}) => {
   state.isAuth = true;
@@ -10,26 +10,37 @@ const handleFulfilled = (state, {payload}) => {
   state.token = payload.token
   state.isModal = false
   state.status = 'success'
+  state.errorMessage = null
+}
+
+const handleError = (state, {payload}) => {
+  state.errorMessage = payload
+  state.status = 'error'
+}
+
+const initialState = {
+  isAuth: false,
+  user: {email: null, id: null},
+  token: null,
+  isModal: false,
+  status: null,
+  errorMessage: null
 }
 
 const authSlice = createSlice({
   name: 'auth',
 
-  initialState: {
-    isAuth: false,
-    user: {email: null, id: null},
-    token: null,
-    isModal: false,
-    status: null
-  },
+  initialState,
 
   reducers: {
     removeUser(state){
       state.isAuth = false;
-      state.token = null;
-      state.user = {email: null, id: null};
-      state.isModal = false;
-      state.status = null;
+      state.user.email = null
+      state.user.id = null
+      state.token = null
+      state.isModal = false
+      state.status = null
+      state.errorMessage = null
     },
 
     toggleModal(state, {payload}){

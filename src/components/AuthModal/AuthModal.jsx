@@ -2,8 +2,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { useState } from 'react';
 
+import { FcGoogle } from 'react-icons/fc';
+
 import { AuthForm } from 'components';
 import { googleAuth, logIn, register } from 'redux/auth/operations';
+
+import css from './AuthModal.module.css';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -40,11 +44,12 @@ export const AuthModal = () => {
       ) : (
         <AuthForm title="Login" handleSubmit={handleSubmit}>
           <button
+            className={css.googleAuthBtn}
             onClick={handleGoogleAuth}
             type="button"
             disabled={status === 'loading' ? true : false}
           >
-            Continue with Google
+            <FcGoogle /> Continue with Google
           </button>
           <p>
             Don`t have an account?

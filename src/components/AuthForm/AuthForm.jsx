@@ -1,3 +1,4 @@
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,6 +8,7 @@ import css from './AuthForm.module.css';
 
 export const AuthForm = ({ title, handleSubmit, children }) => {
   const [userData, setUserData] = useState({ email: '', password: '' });
+  const errorMessage = useSelector(state => state.auth.errorMessage);
   const dispatch = useDispatch();
   const status = useSelector(state => state.auth.status);
 
@@ -17,6 +19,12 @@ export const AuthForm = ({ title, handleSubmit, children }) => {
       window.removeEventListener('keydown', closeModal);
     };
   });
+
+  useEffect(() => {
+    if (status === 'error' && errorMessage) {
+      Notify.failure(errorMessage);
+    }
+  }, [status, errorMessage]);
 
   const handleChange = ({ target }) => {
     setUserData({ ...userData, [target.name]: target.value });
@@ -45,6 +53,7 @@ export const AuthForm = ({ title, handleSubmit, children }) => {
               name="email"
               onChange={handleChange}
               value={userData.email}
+              placeholder="example@email.com"
               required
             />
           </label>
@@ -55,6 +64,7 @@ export const AuthForm = ({ title, handleSubmit, children }) => {
               name="password"
               onChange={handleChange}
               value={userData.password}
+              placeholder="at least 6 characters"
               required
             />
           </label>
