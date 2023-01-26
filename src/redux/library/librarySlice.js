@@ -38,9 +38,7 @@ const librarySlice = createSlice({
   .addCase(getSavedMovies.rejected, handleError)
 
   .addCase(addMovie.fulfilled, handleFulfilled)
-
   .addCase(deleteMovie.fulfilled, handleFulfilled)
-
   .addCase(getSavedMovies.fulfilled, handlePending)
 })
 

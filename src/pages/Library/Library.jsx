@@ -8,8 +8,8 @@ import { selectFilteredMovies } from 'redux/library/selectors';
 const Library = () => {
   const isAuth = useSelector(state => state.auth.isAuth);
   const isModal = useSelector(state => state.auth.isModal);
-  const status = useSelector(state => state.library.status);
-  const libraryMovies = useSelector(selectFilteredMovies);
+  const { status, libraryMovies } = useSelector(state => state.library);
+  const filteredMovies = useSelector(selectFilteredMovies);
 
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ const Library = () => {
     <main>
       {status === 'success' &&
         (libraryMovies.length > 0 ? (
-          <MoviesList movies={libraryMovies} />
+          <MoviesList movies={filteredMovies} />
         ) : (
           <p style={{ textAlign: 'center' }}>
             You don't have any movies yet...

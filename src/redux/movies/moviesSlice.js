@@ -10,7 +10,14 @@ const moviesSlice = createSlice({
     movies: [],
     genres: [],
     totalResults: 0,
-    status: null
+    status: null,
+    scrollPosition: null,
+  },
+
+  reducers:{
+    setScrollPosition(state, {payload}){
+      state.scrollPosition = payload
+    }
   },
 
   extraReducers: builder => builder
@@ -26,12 +33,14 @@ const moviesSlice = createSlice({
       state.movies = payload.results
       state.totalResults = payload.total_results
       state.status = 'success'
+      state.scrollPosition = null
     })
 
     .addCase(getSearchMovie.fulfilled, (state, {payload})=>{
       state.movies = payload.results
       state.totalResults = payload.total_results
       state.status = 'success'
+      state.scrollPosition = null
     })
 
     .addCase(getMoviesGenres.fulfilled, (state, {payload})=>{
@@ -40,3 +49,4 @@ const moviesSlice = createSlice({
 })
 
 export const moviesReducer = moviesSlice.reducer
+export const {setScrollPosition} = moviesSlice.actions

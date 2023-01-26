@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import css from './Header.module.css';
 import { removeUser, toggleModal } from 'redux/auth/authSlice';
 import { clearLibraryMovies } from 'redux/library/librarySlice';
-import { useLocation } from 'react-router-dom';
+import { RiLoginBoxFill, RiLogoutBoxFill } from 'react-icons/ri';
 
 import { SearchField } from 'components';
 
@@ -48,8 +49,16 @@ export const Header = () => {
       {(location.pathname === '/' || location.pathname === '/library') && (
         <SearchField />
       )}
-      <button className={css.logBtn} type="button" onClick={handleClickLogBtn}>
-        {isAuth ? 'Logout' : 'Login'}
+      <button
+        className={isAuth ? css.logoutBtn : css.loginBtn}
+        type="button"
+        onClick={handleClickLogBtn}
+      >
+        {isAuth ? (
+          <RiLogoutBoxFill title="Logout" size="35px" />
+        ) : (
+          <RiLoginBoxFill title="Login" size="35px" />
+        )}
       </button>
     </header>
   );
