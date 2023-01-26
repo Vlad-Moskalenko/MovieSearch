@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { auth } from 'firebase.js';
+import { auth } from 'firebaseConfig.js';
 
 import {
   signInWithEmailAndPassword,

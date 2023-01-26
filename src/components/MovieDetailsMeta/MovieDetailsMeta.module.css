@@ -65,8 +65,7 @@
   background: #FF6B01;
   text-shadow: 2px 2px 4px #000;
 
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-radius: 5px;
 
   border: none;
   outline: none;

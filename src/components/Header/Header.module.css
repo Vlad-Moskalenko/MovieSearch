@@ -37,9 +37,10 @@
 .logBtn{
   padding: 3px 12px;
   align-self: center;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 1.17;
+  margin-left: 10px;
 
   vertical-align: middle;
 

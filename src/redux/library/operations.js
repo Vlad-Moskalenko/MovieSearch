@@ -1,11 +1,11 @@
-import {db} from 'firebase.js'
-import { setDoc, deleteDoc, doc, onSnapshot, collection} from "firebase/firestore";
+import {db} from 'firebaseConfig.js'
+import { setDoc, deleteDoc, doc, onSnapshot, collection, orderBy, query, serverTimestamp} from "firebase/firestore";
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const addMovie = createAsyncThunk('library/addMovie', async ({userId, movieData}, thunkApi) => {
   try {
-    await setDoc(doc(db, `${userId}`, `${movieData.id}`), movieData);
+    await setDoc(doc(db, `${userId}`, `${movieData.id}`), {...movieData, createdAt: serverTimestamp()});
   } catch (e) {
     thunkApi.rejectWithValue(e.message)
   }
@@ -22,7 +22,8 @@ const deleteMovie = createAsyncThunk('library/deleteMovie', async ({userId, movi
 
 const getSavedMovies = createAsyncThunk('library/getSavedMovies', async ({userId, setSavedMovies}, thunkApi) => {
   try{
-    onSnapshot(collection(db, `${userId}`), snapshot => {
+    const q = query(collection(db, `${userId}`), orderBy('createdAt', 'desc') )
+    onSnapshot(q, snapshot => {
       let data = []
 
       snapshot.docs.forEach(doc => {

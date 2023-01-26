@@ -6,6 +6,7 @@ import { MoviesList, Spinner, NotFound } from 'components';
 
 const Library = () => {
   const isAuth = useSelector(state => state.auth.isAuth);
+  const isModal = useSelector(state => state.auth.isModal);
   const { libraryMovies, status } = useSelector(state => state.library);
 
   const dispatch = useDispatch();
@@ -16,21 +17,25 @@ const Library = () => {
     }
   }, [dispatch, isAuth]);
 
-  return (
-    isAuth && (
-      <main>
-        {status === 'success' &&
-          (libraryMovies.length > 0 ? (
-            <MoviesList movies={libraryMovies} />
-          ) : (
-            <p style={{ textAlign: 'center' }}>
-              You don't have any movies yet...
-            </p>
-          ))}
+  return isAuth ? (
+    <main>
+      {status === 'success' &&
+        (libraryMovies.length > 0 ? (
+          <MoviesList movies={libraryMovies} />
+        ) : (
+          <p style={{ textAlign: 'center' }}>
+            You don't have any movies yet...
+          </p>
+        ))}
 
-        {status === 'error' && <NotFound />}
+      {status === 'error' && <NotFound />}
 
-        {status === 'loading' && <Spinner />}
+      {status === 'loading' && <Spinner />}
+    </main>
+  ) : (
+    !isModal && (
+      <main style={{ textAlign: 'center' }}>
+        Sorry, but we couldn't find your movies till you are not authorized...
       </main>
     )
   );
