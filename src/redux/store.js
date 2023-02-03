@@ -1,19 +1,33 @@
 import { configureStore } from "@reduxjs/toolkit";
+import {
+  persistStore,
+  persistReducer,
+} from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-import { trendingMoviesReducer } from "./features/trendingMoviesSlice";
-import { searchMovieReducer } from "./features/searchMovieSlice";
-import { movieDetailsReducer } from "./features/movieDetailsSlice";
-import { moviesGenresReducer } from "./features/moviesGenresSlice";
-import { movieCastReducer } from "./features/movieCastSlice";
-import { movieReviewsReducer } from "./features/movieReviewsSlice";
+import { moviesReducer } from "./movies/moviesSlice";
+import { movieDetailsReducer } from "./movieDetails/movieDetailsSlice";
+import { authReducer } from "./auth/authSlice";
+import { libraryReducer } from "./library/librarySlice";
+
+const persistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ["user", "isAuth"]
+}
 
 export const store = configureStore({
   reducer: {
-    trendingMovies: trendingMoviesReducer,
-    searchMovie: searchMovieReducer,
+    movies: moviesReducer,
     movieDetails: movieDetailsReducer,
-    moviesGenres: moviesGenresReducer,
-    movieCast: movieCastReducer,
-    movieReviews: movieReviewsReducer
-  }
+    auth: persistReducer(persistConfig, authReducer),
+    library: libraryReducer
+  },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })
+
+export const persistor = persistStore(store)

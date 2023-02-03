@@ -1,19 +1,22 @@
-.navigationList{
+.header{
   min-height: 15vh;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.navigationList{
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-
-  background-color: rgba(0,0,0);
+  gap: 15px;
 }
 
 .navigationItem a{
-  font-size: 32px;
+  font-size: 24px;
   font-weight: 700;
 
-  color: #FFFFFF;
   text-decoration: none;
 
   transition: color 250ms ease-in-out, border-bottom 250ms ease-in-out;
@@ -28,4 +31,60 @@
 .active {
   color: #FF6B01;
   border-bottom: 4px solid #FF001B;
+}
+
+.loginBtn{
+  margin-left: 10px;
+  padding: 0;
+
+  color: #fff;
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  transition: color 0.3s ease-in-out;
+}
+
+.logoutBtn{
+  margin-left: 10px;
+
+  color: #FF6B01;
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  transition: color 0.3s ease-in-out;
+}
+
+.loginBtn:hover,
+.loginBtn:focus{
+  color: #FF6B01;
+}
+
+.logoutBtn:hover,
+.logoutBtn:focus{
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 768px) {
+  .header{
+    padding: 15px 15px;
+    min-height: 65px;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 20px;
+  }
+
+  .header nav {
+    align-self: flex-start;
+  }
+
+  .loginBtn,
+  .logoutBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
 }

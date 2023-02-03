@@ -17,4 +17,6 @@
 
 .active{
   font-weight: 700;
+  color: #FF6B01;
+  border-bottom: 4px solid #FF001B;
 }

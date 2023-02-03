@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectMovieDetails } from 'redux/selectors';
-import { getMovieDetails } from 'redux/operations';
+import { getMovieDetails } from 'redux/movieDetails/operations';
 
 import {
   MovieDetailsMeta,
@@ -11,6 +10,7 @@ import {
   BackLink,
   NotFound,
   Spinner,
+  TrailerMovieModal,
 } from 'components';
 
 import css from './MovieDetails.module.css';
@@ -20,21 +20,22 @@ const MovieDetails = () => {
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
 
-  const { movieDetails, status } = useSelector(selectMovieDetails);
+  const status = useSelector(state => state.movieDetails.status);
+  const trailerStatus = useSelector(
+    state => state.movieDetails.movieTrailer.status
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (movieId) {
-      dispatch(getMovieDetails(movieId));
-    }
+    dispatch(getMovieDetails(movieId));
   }, [movieId, dispatch]);
 
   return (
     <main className={css.movieDetailsWrapper}>
       {status === 'success' && (
         <>
-          <BackLink location={backLinkHref} />
-          <MovieDetailsMeta movieDetails={movieDetails}>
+          <MovieDetailsMeta>
+            <BackLink location={backLinkHref} />
             <AdditionalInfo location={backLinkHref} />
           </MovieDetailsMeta>
         </>
@@ -43,6 +44,8 @@ const MovieDetails = () => {
       {status === 'error' && <NotFound title="Oops, something went wrong..." />}
 
       {status === 'loading' && <Spinner />}
+
+      {trailerStatus === 'success' && <TrailerMovieModal />}
     </main>
   );
 };

@@ -16,6 +16,8 @@
 
   box-shadow: rgba(255, 107, 8, 0.2) 0px 22px 70px 4px;
 
+  color: #000;
+
   transition: transform 250ms ease-in-out, box-shadow 250ms ease-in-out;
   animation: blur 250ms ease-in-out;
 }
@@ -88,7 +90,7 @@
   align-items: flex-start;
   gap: 10px;
 
-  font-size: 14px;
+  font-size: 20px;
   text-transform: uppercase;
 
   text-shadow: 2px 2px 4px #ff6b08;
@@ -153,10 +155,6 @@
 
   .movieWrapper {
     height: 574px;
-  }
-
-  .movieTitle {
-    font-size: 20px;
   }
 }
 

@@ -1,0 +1,30 @@
+.googleAuthBtn{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  padding: 5px 5px;
+
+  font-family: 'roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+
+  border-radius: 5px;
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  transition: color 250ms ease-in-out, text-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
+}
+
+.googleAuthBtn:hover,
+.googleAuthBtn:focus {
+  color: #FF6B01;
+}
+
+.googleAuthBtn:disabled{
+  opacity: 0.2;
+}
