@@ -51,7 +51,7 @@ const getMovieTrailer = createAsyncThunk('movieDetails/getMovieTrailer', async (
   try{
     const {data, request} = await axios.get(`/movie/${movieId}/videos?`)
 
-    if(request.status !== 200){
+    if(request.status !== 200 || data.results.length === 0){
       throw new Error(request.status)
     }
 

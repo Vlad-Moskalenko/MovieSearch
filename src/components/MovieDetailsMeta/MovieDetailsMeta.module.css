@@ -1,6 +1,5 @@
 .movieMetaWrapper{
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
   gap: 40px;
 
@@ -28,12 +27,11 @@
 .moviePoster {
   position: relative;
   min-width: 336px;
-  height: 70vh;
+  height: 504px;
   object-fit: cover;
   object-position: center;
 
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-radius: 5px;
 }
 
 .moviePoster::after {
@@ -86,6 +84,11 @@
   opacity: 0.2;
 }
 
+.movieInfoWrapper{
+  max-width: 540px;
+  word-wrap: break-word;
+}
+
 .movieTitle{
   display: flex;
   gap: 5px;
@@ -136,5 +139,28 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media  screen and (max-width: 768px) {
+  .movieMetaWrapper{
+    flex-direction: column;
+    align-items: center;
+    gap: 80px;
+
+    color: #fff;
+  }
+
+  .moviePoster {
+    width: 290px;
+    height: 100%;
+  }
+}
+
+@media  screen and (max-width: 480px) {
+
+  .moviePoster {
+    min-width: 100%;
+    height: 100%;
   }
 }

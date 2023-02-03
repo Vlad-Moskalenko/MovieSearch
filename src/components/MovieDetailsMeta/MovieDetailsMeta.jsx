@@ -8,6 +8,7 @@ import { NotFound } from 'components';
 import { addMovie, deleteMovie } from 'redux/library/operations';
 import { toggleModal } from 'redux/auth/authSlice';
 import { getMovieTrailer } from 'redux/movieDetails/operations';
+import { Notify } from 'notiflix';
 
 export const MovieDetailsMeta = ({ children }) => {
   const dispatch = useDispatch();
@@ -50,12 +51,17 @@ export const MovieDetailsMeta = ({ children }) => {
   };
 
   const handleClickPlayBtn = () => {
-    dispatch(getMovieTrailer(id));
+    dispatch(getMovieTrailer(id)).then(
+      resp =>
+        resp?.error &&
+        Notify.failure("Sorry, we didn't find trailer of this movie")
+    );
   };
 
   return (
     <article className={css.movieMetaWrapper}>
       <div className={css.moviePosterWrapper}>
+        {children[0]}
         <button
           onClick={handleClickPlayBtn}
           className={css.playTrailerBtn}
@@ -70,7 +76,6 @@ export const MovieDetailsMeta = ({ children }) => {
               poster_path || backdrop_path
             }`}
             alt={title || original_title}
-            height="65vh"
           />
         ) : (
           <NotFound className={css.moviePoster} />
@@ -83,7 +88,7 @@ export const MovieDetailsMeta = ({ children }) => {
           {isLibraryMovie ? 'REMOVE FROM LIBRARY' : 'ADD TO LIBRARY'}
         </button>
       </div>
-      <div>
+      <div className={css.movieInfoWrapper}>
         <ul className={css.movieMeta}>
           <li className={css.movieMetaItem}>
             <h2 className={css.movieTitle}>
@@ -107,7 +112,7 @@ export const MovieDetailsMeta = ({ children }) => {
             </p>
           </li>
         </ul>
-        {children}
+        {children[1]}
       </div>
     </article>
   );

@@ -1,4 +1,5 @@
 .rc-pagination{
+  padding: 0 15px;
   margin-bottom: 60px;
 
   display: flex;
@@ -8,9 +9,14 @@
 }
 
 .rc-pagination-item{
+  margin-right: 0;
   border: none;
   background-color: transparent;
   color: #fff;
+}
+
+.rs-pagination-item:last-of-type{
+  margin-right: 8px;
 }
 
 .rc-pagination-item a{
@@ -52,10 +58,28 @@
   background-color: #FF6B01;
 }
 
+.rc-pagination-next{
+  margin-left: 8px;
+}
+
 .rc-pagination-prev button:after {
   content: '❮';
 }
 
 .rc-pagination-next button:after {
   content: '❯';
+}
+
+@media screen and (max-width: 480px){
+  .rc-pagination{
+    font-size: 14px;
+  }
+
+  .rc-pagination-item {
+    border: none;
+  }
+
+  .rc-pagination-item a{
+    padding: 0 3px;
+  }
 }

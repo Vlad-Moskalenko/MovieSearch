@@ -60,3 +60,9 @@
   line-height: 1.14;
   color: #FF001B;
 }
+
+@media screen and (max-width: 480px){
+  .searchField{
+    width: 100%;
+  }
+}

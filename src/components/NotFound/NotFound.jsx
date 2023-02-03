@@ -1,5 +1,3 @@
-import img from '../../images/error.gif';
-
 import css from './NotFound.module.css';
 
 export const NotFound = ({ className, title }) => (

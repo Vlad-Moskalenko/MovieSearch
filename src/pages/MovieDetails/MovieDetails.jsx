@@ -21,6 +21,9 @@ const MovieDetails = () => {
   const backLinkHref = location.state?.from ?? '/';
 
   const status = useSelector(state => state.movieDetails.status);
+  const trailerStatus = useSelector(
+    state => state.movieDetails.movieTrailer.status
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,8 +34,8 @@ const MovieDetails = () => {
     <main className={css.movieDetailsWrapper}>
       {status === 'success' && (
         <>
-          <BackLink location={backLinkHref} />
           <MovieDetailsMeta>
+            <BackLink location={backLinkHref} />
             <AdditionalInfo location={backLinkHref} />
           </MovieDetailsMeta>
         </>
@@ -42,7 +45,7 @@ const MovieDetails = () => {
 
       {status === 'loading' && <Spinner />}
 
-      <TrailerMovieModal />
+      {trailerStatus === 'success' && <TrailerMovieModal />}
     </main>
   );
 };
