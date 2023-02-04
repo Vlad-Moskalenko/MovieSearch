@@ -48,13 +48,13 @@ export const AuthForm = ({ title, handleSubmit, children }) => {
       <div className={css.modalWindow}>
         <form className={css.authForm} onSubmit={onSubmit}>
           <label className={css.authField}>
-            Email
+            E-mail
             <input
               type="email"
               name="email"
               onChange={handleChange}
               value={userData.email}
-              placeholder="example@email.com"
+              placeholder="E-mail"
               required
             />
           </label>
@@ -65,7 +65,8 @@ export const AuthForm = ({ title, handleSubmit, children }) => {
               name="password"
               onChange={handleChange}
               value={userData.password}
-              placeholder="at least 6 characters"
+              placeholder="Password"
+              min="6"
               required
             />
           </label>
